@@ -2,7 +2,6 @@ import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
-import { postSweet } from '../repository/api/adminRepository';
 
 
 type Inputs = {
@@ -15,7 +14,8 @@ const Admin: React.FC = () => {
   } = useForm<Inputs>();
 
   const onSubmit = async(data): Promise<void> => {
-    await postSweet(data);
+    // await postSweet(data);
+    console.log('sweetを投稿');
   };
 
   return (

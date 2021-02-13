@@ -10,7 +10,6 @@ import Axios from 'axios';
 import SweetsDropDown from '../components/forms/SweetsDropDown';
 import ReviewText from '../components/forms/ReviewText';
 import EvaluationForm from '../components/forms/EvaluetionForm';
-import { postReview } from '../repository/api/reviewRepository';
 
 type Props = {
   sweets: {id:number, name:string, createdAt:Date}[]
@@ -22,7 +21,8 @@ const NewReview: React.FC<Props> = ({ sweets }) => {
 
   const onSubmit = async(data) => {
     try {
-      await postReview(data, session);
+      // await postReview(data, session);
+      console.log('reviewを投稿');
       Router.push('/');
     }
     catch (error) {
