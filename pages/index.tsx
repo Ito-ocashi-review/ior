@@ -112,10 +112,10 @@ const Index: React.FC<Props> = ({ sweetsData }) => {
 };
 
 export const getServerSideProps:GetServerSideProps = async(ctx) => {
-  const sweetsData = await Axios.get('http://ior_back:8000/api/ranking');
+  const sweetsData = [{ name: 'hoge', evaluation: '4.6' }, { name: 'jkdk', evaluation: '3.6' }, { name: 'fdfsdfsdfe', evaluation: '2.5' }];
   return {
     props: {
-      sweetsData: sweetsData.data,
+      sweetsData,
     },
   };
 };
