@@ -10,7 +10,7 @@ type Inputs = {
 
 const Admin: React.FC = () => {
   const {
-    register, handleSubmit, control, errors,
+    handleSubmit, control,
   } = useForm<Inputs>();
 
   const onSubmit = async(data): Promise<void> => {
