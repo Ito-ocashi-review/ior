@@ -2,10 +2,10 @@ import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
-
+import Axios from 'axios';
 
 type Inputs = {
-  sweet: string,
+  name: string,
 };
 
 const Admin: React.FC = () => {
@@ -14,8 +14,11 @@ const Admin: React.FC = () => {
   } = useForm<Inputs>();
 
   const onSubmit = async(data): Promise<void> => {
-    // await postSweet(data);
-    console.log('sweetを投稿');
+    await Axios({
+      method: 'post',
+      url: '/api/sweets',
+      data,
+    });
   };
 
   return (
@@ -23,7 +26,7 @@ const Admin: React.FC = () => {
       <h3>お菓子を入力してください</h3>
       <Controller
         as={Input}
-        name="sweet"
+        name="name"
         control={control}
         placeholder="ビックリマンチョコ"
         className="materialUIInput"

@@ -68,15 +68,15 @@ jobs:
       run: |
         yarn lint
 
-    - name: Slack Notification
-      uses: weseek/ghaction-slack-notification@master
-      if: failure()
-      with:
-        type: ${{ job.status }}
-        job_name: '*lint (${{ matrix.node-version }})*'
-        channel: '#mokumoku-ci'
-        isCompactMode: true
-        url: ${{ secrets.SLACK_WEBHOOK_URL }}
+    # - name: Slack Notification
+    #   uses: weseek/ghaction-slack-notification@master
+    #   if: failure()
+    #   with:
+    #     type: ${{ job.status }}
+    #     job_name: '*lint (${{ matrix.node-version }})*'
+    #     channel: '#mokumoku-ci'
+    #     isCompactMode: true
+    #     url: ${{ secrets.SLACK_WEBHOOK_URL }}
 
   build:
     runs-on: ubuntu-latest
@@ -136,26 +136,26 @@ jobs:
         name: Report
         path: report
 
-    - name: Slack Notification
-      uses: weseek/ghaction-slack-notification@master
-      if: failure()
-      with:
-        type: ${{ job.status }}
-        job_name: '*build (${{ matrix.node-version }})*'
-        channel: '#mokumoku-ci'
-        isCompactMode: true
-        url: ${{ secrets.SLACK_WEBHOOK_URL }}
+    # - name: Slack Notification
+    #   uses: weseek/ghaction-slack-notification@master
+    #   if: failure()
+    #   with:
+    #     type: ${{ job.status }}
+    #     job_name: '*build (${{ matrix.node-version }})*'
+    #     channel: '#mokumoku-ci'
+    #     isCompactMode: true
+    #     url: ${{ secrets.SLACK_WEBHOOK_URL }}
 
   all-jobs-success-alert:
     runs-on: ubuntu-latest
     needs: [build]
-    steps:
-    - name: Slack Notification
-      uses: weseek/ghaction-slack-notification@master
-      if: always()
-      with:
-        type: "success"
-        job_name: '*all jobs*'
-        channel: '#mokumoku-ci'
-        isCompactMode: true
-        url: ${{ secrets.SLACK_WEBHOOK_URL }}
+    # steps:
+    # - name: Slack Notification
+    #   uses: weseek/ghaction-slack-notification@master
+    #   if: always()
+    #   with:
+    #     type: "success"
+    #     job_name: '*all jobs*'
+    #     channel: '#mokumoku-ci'
+    #     isCompactMode: true
+    #     url: ${{ secrets.SLACK_WEBHOOK_URL }}
