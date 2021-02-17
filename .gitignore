@@ -4,3 +4,4 @@ yarn-error.log
 .env.development
 .env.local
 next.config.js
+db
