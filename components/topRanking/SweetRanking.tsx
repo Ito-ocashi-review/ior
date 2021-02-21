@@ -7,7 +7,7 @@ import TopRanking from './TopRanking';
 
 type data = {
   name: string,
-  evaluation: string,
+  evaluation: number,
 }
 
 type Props ={

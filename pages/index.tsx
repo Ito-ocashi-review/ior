@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Button, Grid,
 } from '@material-ui/core';
@@ -7,7 +7,6 @@ import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
 import { useSession } from 'next-auth/client';
 import Router from 'next/router';
-import { GetServerSideProps } from 'next';
 import Axios from 'axios';
 import OAuthButton from '../components/OAuthButton';
 import SweetRanking from '../components/topRanking/SweetRanking';
@@ -59,7 +58,7 @@ const useStyles = makeStyles(theme => ({
 
 type data = {
     name: string,
-    evaluation: string,
+    evaluation: number,
 }
 
 type Props ={
@@ -68,8 +67,17 @@ type Props ={
 
 const Index: React.FC<Props> = ({ sweetsData }) => {
   const [session, loading] = useSession();
+  const [sweetRanking, setsweetRanking] = useState([]);
 
   const classes = useStyles();
+
+  useEffect(() => {
+    const getRanking = async() => {
+      const ranking = await Axios.get('/api/sweets/ranking');
+      setsweetRanking(ranking.data.sortedSweetsRankingData);
+    };
+    getRanking();
+  }, []);
 
   return (
     <div className={classes.top}>
@@ -77,7 +85,7 @@ const Index: React.FC<Props> = ({ sweetsData }) => {
         <span className={classes.title}>お菓子ランキングトップ３</span>
         <div className={classes.sweetRanking}>
           <Grid container spacing={3}>
-            <SweetRanking sweetsData={sweetsData} />
+            <SweetRanking sweetsData={sweetRanking} />
           </Grid>
         </div>
       </div>
@@ -109,15 +117,6 @@ const Index: React.FC<Props> = ({ sweetsData }) => {
         )}
     </div>
   );
-};
-
-export const getServerSideProps:GetServerSideProps = async(ctx) => {
-  const sweetsData = [{ name: 'hoge', evaluation: '4.6' }, { name: 'jkdk', evaluation: '3.6' }, { name: 'fdfsdfsdfe', evaluation: '2.5' }];
-  return {
-    props: {
-      sweetsData,
-    },
-  };
 };
 
 export default Index;
