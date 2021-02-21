@@ -10,13 +10,13 @@ type Props = {
 
 const SweetsDropDown: React.FC<Props> = React.memo(({ sweets }) => {
   const { control, watch } = useFormContext();
-  const sweet = watch('sweet', '');
+  const sweetId = watch('sweetId', '');
 
   return (
     <>
       <Controller
         control={control}
-        name="sweet"
+        name="sweetId"
         render={({ onChange }) => (
           <FormControl fullWidth>
             <InputLabel htmlFor="grouped-select">お菓子を選択</InputLabel>

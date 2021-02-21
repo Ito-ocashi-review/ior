@@ -18,7 +18,7 @@ type Props = {
 const NewReview: React.FC<Props> = () => {
   const methods = useForm({
     defaultValues: {
-      sweet: '',
+      sweetId: '',
       comment: '',
       evaluation: 2.5,
     },
@@ -26,14 +26,13 @@ const NewReview: React.FC<Props> = () => {
   const [sweets, setSweets] = useState([]);
 
   const onSubmit = async(data) => {
-    console.log(data);
-    // try {
-    //   await Axios.post('/api/reviews', { data });
-    //   Router.push('/');
-    // }
-    // catch (error) {
-    //   logger.error(error);
-    // }
+    try {
+      await Axios.post('/api/reviews', { data });
+      Router.push('/');
+    }
+    catch (error) {
+      logger.error(error);
+    }
   };
 
   useEffect(() => {

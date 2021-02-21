@@ -19,8 +19,13 @@ export default async function handler(req, res) {
       break;
     case 'POST':
       try {
+        const { data } = body;
         await Review.create(
-          { comment: body.data.comment },
+          {
+            sweetId: data.sweetId,
+            comment: data.comment,
+            evaluation: data.evaluation,
+          },
         ); /* create a new model in the database */
         res.status(201).json({ success: true, data: Review });
       }

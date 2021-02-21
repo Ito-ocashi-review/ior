@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 const ReviewScheme = new mongoose.Schema({
   user: Object,
 
+  sweetId: String,
+
   evaluation: {
     type: Number,
     // required: true,
