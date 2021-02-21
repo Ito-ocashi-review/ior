@@ -36,7 +36,7 @@ const ReporterRanking:React.FC<Props> = ({ title, rankingArray, rankingUnit }) =
   const classes = useStyle();
   const repoters = rankingArray.map((ranking, index) => {
     return (
-      <div className={classes.ranking}>
+      <div className={classes.ranking} key={ranking.name}>
         <RankingColumn
           ranking={index + 1}
           name={ranking.name}

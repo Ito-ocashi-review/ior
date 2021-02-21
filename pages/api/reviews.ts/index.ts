@@ -1,4 +1,4 @@
-import Sweet from '../../../models/Sweet';
+import Review from '../../../models/Review';
 import dbConnect from '../../../utils/dbConnect';
 
 export default async function handler(req, res) {
@@ -9,9 +9,9 @@ export default async function handler(req, res) {
   switch (method) {
     case 'GET':
       try {
-        /* get all sweets */
-        const sweets = await Sweet.find({});
-        res.status(201).json({ success: true, sweets });
+        /* get all Reviews */
+        const reviews = await Review.find({});
+        res.status(201).json({ success: true, reviews });
       }
       catch (error) {
         res.status(400).json({ success: false });
@@ -19,10 +19,15 @@ export default async function handler(req, res) {
       break;
     case 'POST':
       try {
-        const sweet = await Sweet.create(
-          { name: body.name },
+        const { data } = body;
+        await Review.create(
+          {
+            sweetId: data.sweetId,
+            comment: data.comment,
+            evaluation: data.evaluation,
+          },
         ); /* create a new model in the database */
-        res.status(201).json({ success: true, data: sweet });
+        res.status(201).json({ success: true, data: Review });
       }
       catch (error) {
         res.status(400).json({ success: false });

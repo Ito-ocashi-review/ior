@@ -5,24 +5,25 @@ import { Typography } from '@material-ui/core';
 
 const EvaluationForm: React.FC = () => {
   const { control, watch } = useFormContext();
-  const rating: number = watch('rating', 0);
+  const evaluation: number = watch('evaluation', 0);
 
   return (
     <>
       <Typography component="legend">評価する</Typography>
       <Controller
         control={control}
-        name="rating"
+        name="evaluation"
         render={({ onChange, value }) => (
           <Rating
-            value={value}
+            name="evaluation"
+            value={Number(value)}
             precision={0.1}
             onChange={onChange}
           />
         )}
       >
       </Controller>
-      <span>{rating}</span>
+      <span>{evaluation}</span>
     </>
   );
 };

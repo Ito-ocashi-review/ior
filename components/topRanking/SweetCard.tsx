@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-type props = {evaluation:string, name:string}
+type props = {evaluation:number, name:string}
 
 const SweetCard:React.FC<props> = ({ evaluation, name }) => {
   const classes = useStyles();

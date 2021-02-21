@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
-import { useSession, getSession } from 'next-auth/client';
+import { getSession } from 'next-auth/client';
 import Button from '@material-ui/core/Button';
 import logger from 'react-logger';
 import { Container } from '@material-ui/core';
@@ -15,20 +15,33 @@ type Props = {
   sweets: {id:number, name:string, createdAt:Date}[]
 }
 
-const NewReview: React.FC<Props> = ({ sweets }) => {
-  const methods = useForm();
-  const [session, loading] = useSession();
+const NewReview: React.FC<Props> = () => {
+  const methods = useForm({
+    defaultValues: {
+      sweetId: '',
+      comment: '',
+      evaluation: 2.5,
+    },
+  });
+  const [sweets, setSweets] = useState([]);
 
   const onSubmit = async(data) => {
     try {
-      // await postReview(data, session);
-      console.log('reviewを投稿');
+      await Axios.post('/api/reviews', { data });
       Router.push('/');
     }
     catch (error) {
       logger.error(error);
     }
   };
+
+  useEffect(() => {
+    const getSweets = async() => {
+      const res = await Axios.get('/api/sweets');
+      setSweets(res.data.sweets);
+    };
+    getSweets();
+  }, []);
 
   return (
     <Container maxWidth="md">
@@ -56,17 +69,14 @@ const NewReview: React.FC<Props> = ({ sweets }) => {
 
 export const getServerSideProps:GetServerSideProps = async(context) => {
   const session = await getSession(context);
-  // プラウザ経由でなくサーバーサイドからapiを呼ぶ時はエンドポイントを変える
-  const sweets = await Axios.get('http://ior_back:8000/api/sweets');
+
   if (!session) {
     return {
       notFound: true,
     };
   }
 
-  return {
-    props: { sweets: sweets.data },
-  };
+  return { props: {} };
 };
 
 export default NewReview;
