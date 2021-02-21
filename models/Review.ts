@@ -3,9 +3,9 @@ import mongoose from 'mongoose';
 const ReviewScheme = new mongoose.Schema({
   user: Object,
 
-  star: {
+  evaluation: {
     type: Number,
-    required: true,
+    // required: true,
   },
 
   comment: String,

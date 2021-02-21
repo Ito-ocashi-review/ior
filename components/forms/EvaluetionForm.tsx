@@ -12,9 +12,10 @@ const EvaluationForm: React.FC = () => {
       <Typography component="legend">評価する</Typography>
       <Controller
         control={control}
-        name="rating"
+        name="evaluation"
         render={({ onChange, value }) => (
           <Rating
+            name="rating"
             value={value}
             precision={0.1}
             onChange={onChange}

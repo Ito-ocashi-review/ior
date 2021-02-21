@@ -16,17 +16,24 @@ type Props = {
 }
 
 const NewReview: React.FC<Props> = () => {
-  const methods = useForm();
+  const methods = useForm({
+    defaultValues: {
+      sweet: '',
+      comment: '',
+      evaluation: 0,
+    },
+  });
   const [sweets, setSweets] = useState([]);
 
   const onSubmit = async(data) => {
-    try {
-      // await postReview(data, session);
-      Router.push('/');
-    }
-    catch (error) {
-      logger.error(error);
-    }
+    console.log(data);
+    // try {
+    //   await Axios.post('/api/reviews', { data });
+    //   Router.push('/');
+    // }
+    // catch (error) {
+    //   logger.error(error);
+    // }
   };
 
   useEffect(() => {
@@ -35,7 +42,7 @@ const NewReview: React.FC<Props> = () => {
       setSweets(res.data.sweets);
     };
     getSweets();
-  });
+  }, []);
 
   return (
     <Container maxWidth="md">
