@@ -5,7 +5,7 @@ import { Typography } from '@material-ui/core';
 
 const EvaluationForm: React.FC = () => {
   const { control, watch } = useFormContext();
-  const rating: number = watch('rating', 0);
+  const evaluation: number = watch('evaluation', 0);
 
   return (
     <>
@@ -15,15 +15,15 @@ const EvaluationForm: React.FC = () => {
         name="evaluation"
         render={({ onChange, value }) => (
           <Rating
-            name="rating"
-            value={value}
+            name="evaluation"
+            value={Number(value)}
             precision={0.1}
             onChange={onChange}
           />
         )}
       >
       </Controller>
-      <span>{rating}</span>
+      <span>{evaluation}</span>
     </>
   );
 };

@@ -11,7 +11,6 @@ type Props = {
 const SweetsDropDown: React.FC<Props> = React.memo(({ sweets }) => {
   const { control, watch } = useFormContext();
   const sweet = watch('sweet', '');
-  console.log(sweets);
 
   return (
     <>

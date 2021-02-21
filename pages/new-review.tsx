@@ -20,7 +20,7 @@ const NewReview: React.FC<Props> = () => {
     defaultValues: {
       sweet: '',
       comment: '',
-      evaluation: 0,
+      evaluation: 2.5,
     },
   });
   const [sweets, setSweets] = useState([]);
