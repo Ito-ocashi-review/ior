@@ -27,18 +27,13 @@ const NewReview: React.FC<Props> = () => {
   const [sweets, setSweets] = useState([]);
 
   const onSubmit = async(data) => {
-    // try {
-    await Axios({
-      method: 'post',
-      url: '/api/reviews',
-      data,
-    });
-    Router.push('/');
-    // }
-    // catch (error) {
-    //   console.log(error);
-    //   logger.error(error);
-    // }
+    try {
+      await Axios.post('/api/reviews', { data });
+      Router.push('/');
+    }
+    catch (error) {
+      logger.error(error);
+    }
   };
 
   useEffect(() => {
