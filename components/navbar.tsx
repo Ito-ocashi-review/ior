@@ -55,7 +55,7 @@ const MenuAppBar:React.FC = () => {
         )}
         {session && (
           <>
-            <Button onClick={handleSignOut}>
+            <Button onClick={handleSignOut} color="inherit">
               ログアウト
             </Button>
             <Button

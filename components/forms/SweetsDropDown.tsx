@@ -1,7 +1,8 @@
 import React from 'react';
 import {
-  Select, InputLabel, MenuItem, FormControl, FormControlLabel,
+  Select, InputLabel, MenuItem, FormControl,
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { useFormContext, Controller } from 'react-hook-form';
 
 type Props = {
@@ -12,15 +13,34 @@ const SweetsDropDown: React.FC<Props> = React.memo(({ sweets }) => {
   const { control, watch } = useFormContext();
   const sweetId = watch('sweetId', '');
 
+  const useStyles = makeStyles(theme => ({
+    root: {
+      margin: '20px 0',
+    },
+    label: {
+      color: '#FFFFFF',
+      '&:after': {
+        color: '#FFFFFF',
+      },
+    },
+    select: {
+      '&:before': {
+        borderColor: '#FFFFFF',
+      },
+    },
+  }));
+
+  const classes = useStyles();
+
   return (
     <>
       <Controller
         control={control}
         name="sweetId"
         render={({ onChange }) => (
-          <FormControl fullWidth>
-            <InputLabel htmlFor="grouped-select">お菓子を選択</InputLabel>
-            <Select defaultValue="" id="grouped-select">
+          <FormControl fullWidth className={classes.root}>
+            <InputLabel htmlFor="grouped-select" className={classes.label}>お菓子を選択</InputLabel>
+            <Select defaultValue="" id="grouped-select" className={classes.select}>
               { sweets.map((sweet) => {
                 return (
                   <MenuItem
