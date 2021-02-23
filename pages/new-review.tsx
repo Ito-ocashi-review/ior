@@ -4,6 +4,7 @@ import { getSession } from 'next-auth/client';
 import Button from '@material-ui/core/Button';
 import logger from 'react-logger';
 import { Container } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import Router from 'next/router';
 import { GetServerSideProps } from 'next';
 import Axios from 'axios';
@@ -43,13 +44,25 @@ const NewReview: React.FC<Props> = () => {
     getSweets();
   }, []);
 
+  const useStyles = makeStyles(theme => ({
+    reviewForm: {
+      marginTop: '150px',
+      backgroundColor: '#270000',
+      padding: '30px 30px 50px 30px',
+      borderRadius: '20px',
+      color: 'white',
+    },
+  }));
+
+  const classes = useStyles();
+
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="md" className={classes.reviewForm}>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
-          <span>
-            新しいレビューを登録する
-          </span>
+          <h2>
+            新しいレビューを投稿する
+          </h2>
           <SweetsDropDown sweets={sweets} />
           <ReviewText />
           <EvaluationForm />
