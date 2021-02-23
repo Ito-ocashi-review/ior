@@ -11,8 +11,10 @@ type FormValues = {
 const useStyles = makeStyles(theme => ({
   root: {
     margin: '20px 0',
+    color: '#FFFFFF',
   },
   input: {
+    color: '#FFFFFF',
     '&:before': {
       borderColor: '#FFFFFF',
     },
