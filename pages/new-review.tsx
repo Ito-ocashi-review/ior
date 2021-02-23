@@ -27,8 +27,12 @@ const NewReview: React.FC<Props> = () => {
   const [sweets, setSweets] = useState([]);
 
   const onSubmit = async(data) => {
+    const axiosInstance = Axios.create({
+      headers: { 'Content-Type': 'application/json' },
+    });
+
     try {
-      await Axios.post('/api/reviews', { data });
+      await axiosInstance.post('/api/reviews', { data });
       Router.push('/');
     }
     catch (error) {
