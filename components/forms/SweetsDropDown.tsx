@@ -24,6 +24,7 @@ const SweetsDropDown: React.FC<Props> = React.memo(({ sweets }) => {
       },
     },
     select: {
+      color: '#FFFFFF',
       '&:before': {
         borderColor: '#FFFFFF',
       },
@@ -40,7 +41,7 @@ const SweetsDropDown: React.FC<Props> = React.memo(({ sweets }) => {
         render={({ onChange }) => (
           <FormControl fullWidth className={classes.root}>
             <InputLabel htmlFor="grouped-select" className={classes.label}>お菓子を選択</InputLabel>
-            <Select defaultValue="" id="grouped-select" className={classes.select}>
+            <Select defaultValue="ffsafa" id="grouped-select" className={classes.select}>
               { sweets.map((sweet) => {
                 return (
                   <MenuItem
