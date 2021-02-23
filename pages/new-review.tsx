@@ -28,7 +28,11 @@ const NewReview: React.FC<Props> = () => {
 
   const onSubmit = async(data) => {
     try {
-      await Axios.post('/api/reviews', { data });
+      await Axios({
+        method: 'post',
+        url: '/api/reviews',
+        data,
+      });
       Router.push('/');
     }
     catch (error) {
