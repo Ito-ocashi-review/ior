@@ -32,6 +32,7 @@ const NewReview: React.FC<Props> = () => {
       Router.push('/');
     }
     catch (error) {
+      console.log(error);
       logger.error(error);
     }
   };
