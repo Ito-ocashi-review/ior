@@ -59,9 +59,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 type data = {
-    id: string,
-    name: string,
-    evaluation: number,
+  id: string,
+  name: string,
+  evaluation: number,
 }
 
 type Props ={
@@ -118,9 +118,6 @@ const Index: React.FC<Props> = ({ sweetsData }) => {
           投稿するにはログインが必要です
         </Button>
         )}
-      <Link href="/comment/[id]" as="/comment/1">
-        <a>Go to pages/post/[id].js</a>
-      </Link>
     </div>
   );
 };
