@@ -59,6 +59,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 type data = {
+    id: string,
     name: string,
     evaluation: number,
 }

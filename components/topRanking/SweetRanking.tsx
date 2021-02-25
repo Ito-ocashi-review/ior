@@ -6,6 +6,7 @@ import SweetCard from './SweetCard';
 import TopRanking from './TopRanking';
 
 type data = {
+  id: string,
   name: string,
   evaluation: number,
 }
@@ -22,6 +23,7 @@ const SweetTopRanking:React.FC<Props> = ({ sweetsData }) => {
           number={index + 1}
         />
         <SweetCard
+          id={sweet.id}
           evaluation={sweet.evaluation}
           name={sweet.name}
         />

@@ -1,10 +1,11 @@
 import React from 'react';
 import {
-  Button, Card, CardContent, CardHeader, CardMedia, Typography,
+  Button, Card, CardContent, CardHeader,
 } from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const useStyles = makeStyles(theme => ({
   cards: {
@@ -28,9 +29,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-type props = {evaluation:number, name:string}
+type props = {id: string, evaluation:number, name:string}
 
-const SweetCard:React.FC<props> = ({ evaluation, name }) => {
+const SweetCard:React.FC<props> = ({ id, evaluation, name }) => {
   const classes = useStyles();
 
   return (
@@ -53,9 +54,11 @@ const SweetCard:React.FC<props> = ({ evaluation, name }) => {
         height={300}
       />
       <CardContent className={`${classes.cardContent} ${classes.cardRating}`}>
-        <Button className={classes.cardButton}>
-          + もっと見る
-        </Button>
+        <Link href={`/comment/${id}`}>
+          <Button className={classes.cardButton}>
+            + もっと見る
+          </Button>
+        </Link>
       </CardContent>
     </Card>
   );

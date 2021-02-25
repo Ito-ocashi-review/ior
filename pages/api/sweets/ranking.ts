@@ -13,7 +13,7 @@ export default async function handler(req, res) {
       const reviews = await Review.find({ sweetId: sweet._id });
       // レビューが一つもなかったら、平均値を0で返す
       if (reviews?.length === 0) {
-        return { name: sweet.name, evaluation: 0 };
+        return { id: sweet._id, name: sweet.name, evaluation: 0 };
       }
 
       const scoreAmount = reviews?.map((review) => {
@@ -23,10 +23,10 @@ export default async function handler(req, res) {
       });
 
       if (scoreAmount && reviews?.length) {
-        return { name: sweet.name, evaluation: Number((scoreAmount / reviews?.length).toFixed(2)) };
+        return { id: sweet._id, name: sweet.name, evaluation: Number((scoreAmount / reviews?.length).toFixed(2)) };
       }
 
-      return { name: sweet.name, evaluation: 0 };
+      return { id: sweet._id, name: sweet.name, evaluation: 0 };
 
     });
 
