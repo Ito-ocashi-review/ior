@@ -28,6 +28,7 @@ const Comment: React.FC = () => {
     sweetId: string,
     comment: string,
     evaluation: number,
+    userName: string,
   }
 
   const [reviews, setReviews] = useState<review[]>([]);
@@ -45,10 +46,10 @@ const Comment: React.FC = () => {
   const reviewsList = reviews.map((review) => {
     return (
       <Grid container justify="center" className={classes.cardContainer}>
-        <Grid container xs={6} spacing={3}>
+        <Grid container item xs={6} spacing={3}>
           <Card key={review._id} className={classes.card}>
             <CardHeader
-              title="username"
+              title={review.userName}
             />
             <CardContent>
               <Rating
@@ -67,16 +68,6 @@ const Comment: React.FC = () => {
       </Grid>
     );
   });
-
-  // return (
-  //   <Grid
-  //     container
-  //     alignItems="center"
-  //     className={classes.top}
-  //   >
-  //     {reviewsList}
-  //   </Grid>
-  // );
 
   return (
     <div className={classes.root}>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
-import { getSession } from 'next-auth/client';
+import { getSession, useSession } from 'next-auth/client';
 import Button from '@material-ui/core/Button';
 import logger from 'react-logger';
 import { Container } from '@material-ui/core';
@@ -11,6 +11,7 @@ import Axios from 'axios';
 import SweetsDropDown from '../components/forms/SweetsDropDown';
 import ReviewText from '../components/forms/ReviewText';
 import EvaluationForm from '../components/forms/EvaluetionForm';
+
 
 type Props = {
   sweets: {id:number, name:string, createdAt:Date}[]
@@ -25,12 +26,14 @@ const NewReview: React.FC<Props> = () => {
     },
   });
   const [sweets, setSweets] = useState([]);
+  const [session, loading] = useSession();
 
   const onSubmit = async(data) => {
     const axiosInstance = Axios.create({
       headers: { 'Content-Type': 'application/json' },
     });
 
+    data.userName = session.user.name;
     try {
       await axiosInstance.post('/api/reviews', { data });
       Router.push('/');
