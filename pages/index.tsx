@@ -8,9 +8,11 @@ import Swal from 'sweetalert2';
 import { useSession } from 'next-auth/client';
 import Router from 'next/router';
 import Axios from 'axios';
+import Link from 'next/link';
 import OAuthButton from '../components/OAuthButton';
 import SweetRanking from '../components/topRanking/SweetRanking';
 import TotalRanking from '../components/totalRanking/TotalRanking';
+
 
 const MySwal = withReactContent(Swal);
 
@@ -57,8 +59,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 type data = {
-    name: string,
-    evaluation: number,
+  id: string,
+  name: string,
+  evaluation: number,
 }
 
 type Props ={

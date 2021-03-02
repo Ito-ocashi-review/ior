@@ -25,6 +25,7 @@ export default async function handler(req, res) {
             sweetId: data.sweetId,
             comment: data.comment,
             evaluation: data.evaluation,
+            userName: data.userName,
           },
         ); /* create a new model in the database */
         res.status(201).json({ success: true, data: Review });
