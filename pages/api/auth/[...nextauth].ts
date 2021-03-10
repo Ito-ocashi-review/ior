@@ -23,6 +23,10 @@ const options = {
 
 
 export default (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
-  console.log(JSON.stringify(options));
-  return NextAuth(req, res, options);
+  try {
+    return NextAuth(req, res, options);
+  }
+  catch (e) {
+    console.log(e.message);
+  }
 };
