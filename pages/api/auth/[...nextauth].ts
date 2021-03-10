@@ -27,6 +27,7 @@ export default (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
     return NextAuth(req, res, options);
   }
   catch (e) {
+    console.log('hogehoge');
     console.log(e.message);
   }
 };
