@@ -71,6 +71,7 @@ const Index: React.FC<Props> = ({ sweetsData }) => {
   const [user, setUser] = useState('ログインユーザはいません');
 
   const handleFirebaseLogin = () => {
+    console.log('loginするよ');
     firebase.auth()
       .signInWithPopup(provider)
       .then((result) => {
