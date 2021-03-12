@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
-import { getSession, useSession } from 'next-auth/client';
 import Button from '@material-ui/core/Button';
 import logger from 'react-logger';
 import { Container } from '@material-ui/core';
@@ -26,14 +25,12 @@ const NewReview: React.FC<Props> = () => {
     },
   });
   const [sweets, setSweets] = useState([]);
-  const [session, loading] = useSession();
 
   const onSubmit = async(data) => {
     const axiosInstance = Axios.create({
       headers: { 'Content-Type': 'application/json' },
     });
 
-    data.userName = session.user.name;
     try {
       await axiosInstance.post('/api/reviews', { data });
       Router.push('/');
@@ -88,13 +85,10 @@ const NewReview: React.FC<Props> = () => {
 };
 
 export const getServerSideProps:GetServerSideProps = async(context) => {
-  const session = await getSession(context);
 
-  if (!session) {
-    return {
-      notFound: true,
-    };
-  }
+  // return {
+  //   notFound: true,
+  // };
 
   return { props: {} };
 };
