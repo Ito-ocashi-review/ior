@@ -8,13 +8,23 @@ import Swal from 'sweetalert2';
 import { useSession } from 'next-auth/client';
 import Router from 'next/router';
 import Axios from 'axios';
-import Link from 'next/link';
 import OAuthButton from '../components/OAuthButton';
 import SweetRanking from '../components/topRanking/SweetRanking';
 import TotalRanking from '../components/totalRanking/TotalRanking';
-
+import firebase from '../Firebase';
 
 const MySwal = withReactContent(Swal);
+
+const provider = new firebase.auth.GoogleAuthProvider();
+
+const handleFirebaseLogout = () => {
+  firebase.auth().signOut().then(() => {
+    // Sign-out successful.
+  }).catch((error) => {
+    // An error happened.
+  });
+  console.log('logoutするよ');
+};
 
 const handleLogin = () => {
   MySwal.fire({
@@ -71,6 +81,32 @@ type Props ={
 const Index: React.FC<Props> = ({ sweetsData }) => {
   const [session, loading] = useSession();
   const [sweetRanking, setsweetRanking] = useState([]);
+  const [user, setUser] = useState('ログインユーザはいません');
+
+  const handleFirebaseLogin = () => {
+    firebase.auth()
+      .signInWithPopup(provider)
+      .then((result) => {
+      /** @type {firebase.auth.OAuthCredential} */
+        const credential = result.credential as firebase.auth.OAuthCredential;
+
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        setUser(user.displayName);
+      // ...
+      }).catch((error) => {
+      // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        const credential = error.credential;
+      // ...
+      });
+  };
 
   const classes = useStyles();
 
@@ -99,6 +135,9 @@ const Index: React.FC<Props> = ({ sweetsData }) => {
             <TotalRanking />
           </Grid>
         </div>
+        <span>ログインユーザ:{user}</span><br />
+        <button type="button" onClick={() => handleFirebaseLogin()}>firebaseのログイン</button>
+        <button type="button" onClick={() => handleFirebaseLogout()}>firebaseのログアウト</button>
       </div>
       {session && (
         <Button
