@@ -75,7 +75,8 @@ const Index: React.FC<Props> = ({ sweetsData }) => {
     firebase.auth()
       .signInWithPopup(provider)
       .then((result) => {
-      /** @type {firebase.auth.OAuthCredential} */
+        console.log('login中');
+        /** @type {firebase.auth.OAuthCredential} */
         const credential = result.credential as firebase.auth.OAuthCredential;
 
         // This gives you a Google Access Token. You can use it to access the Google API.
