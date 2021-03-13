@@ -1,28 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import {
   Button, Grid,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import withReactContent from 'sweetalert2-react-content';
-import Swal from 'sweetalert2';
 import Router from 'next/router';
 import Axios from 'axios';
 import SweetRanking from '../components/topRanking/SweetRanking';
 import TotalRanking from '../components/totalRanking/TotalRanking';
-import firebase from '../Firebase';
-
-const MySwal = withReactContent(Swal);
-
-const provider = new firebase.auth.GoogleAuthProvider();
-
-const handleFirebaseLogout = () => {
-  firebase.auth().signOut().then(() => {
-    // Sign-out successful.
-  }).catch((error) => {
-    // An error happened.
-  });
-  console.log('logoutするよ');
-};
+import { AuthContext } from './_app';
 
 const useStyles = makeStyles(theme => ({
   top: {
@@ -68,34 +53,6 @@ type Props ={
 
 const Index: React.FC<Props> = ({ sweetsData }) => {
   const [sweetRanking, setsweetRanking] = useState([]);
-  const [user, setUser] = useState('ログインユーザはいません');
-
-  const handleFirebaseLogin = () => {
-    console.log('loginするよ');
-    firebase.auth()
-      .signInWithPopup(provider)
-      .then((result) => {
-        console.log('login中');
-        /** @type {firebase.auth.OAuthCredential} */
-        const credential = result.credential as firebase.auth.OAuthCredential;
-
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        setUser(user.displayName);
-      // ...
-      }).catch((error) => {
-      // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        const credential = error.credential;
-      // ...
-      });
-  };
 
   const classes = useStyles();
 
@@ -124,9 +81,6 @@ const Index: React.FC<Props> = ({ sweetsData }) => {
             <TotalRanking />
           </Grid>
         </div>
-        <span>ログインユーザ:{user}</span><br />
-        <button type="button" onClick={() => handleFirebaseLogin()}>firebaseのログイン</button>
-        <button type="button" onClick={() => handleFirebaseLogout()}>firebaseのログアウト</button>
       </div>
 
       <Button
