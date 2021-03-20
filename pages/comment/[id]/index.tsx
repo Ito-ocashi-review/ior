@@ -6,6 +6,8 @@ import {
 import { Rating } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 import Axios from 'axios';
+import { admin } from '../../../firebase-admin';
+import firebase from '../../../Firebase';
 
 const Comment: React.FC = () => {
   const router = useRouter();
@@ -75,5 +77,22 @@ const Comment: React.FC = () => {
     </div>
   );
 };
+
+export async function getServerSideProps() {
+  // 外部APIからデータを取得します。
+  admin.auth()
+    .getUser('1g9pg28YcHejj31jzJ7hwj6N7Ej1')
+    .then((userRecord) => {
+    // See the UserRecord reference doc for the contents of userRecord.
+      console.log(`Successfully fetched user data: ${userRecord.toJSON()}`);
+      console.log('userRecord', userRecord.providerData[0].displayName);
+    })
+    .catch((error) => {
+      console.log('Error fetching user data:', error);
+    });
+  const data = 'hooho';
+  // データをprops経由でページに渡します。
+  return { props: { data } };
+}
 
 export default Comment;
