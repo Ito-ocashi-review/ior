@@ -1,15 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import {
-  Card, CardContent, CardHeader, Grid, Typography, Paper,
+  Card, CardContent, CardHeader, Grid, Typography,
 } from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 import Axios from 'axios';
-import { admin } from '../../../firebase-admin';
-import firebase from '../../../Firebase';
 
-const Comment: React.FC = () => {
+type review = {
+  _id: string,
+  sweetId: string,
+  comment: string,
+  evaluation: number,
+  userName: string,
+}
+
+type Props = {
+  reviews: review[]
+}
+
+const Comment: React.FC<Props> = ({ reviews }) => {
   const router = useRouter();
   const { id } = router.query;
 
@@ -25,25 +35,7 @@ const Comment: React.FC = () => {
     },
   }));
 
-  type review = {
-    _id: string,
-    sweetId: string,
-    comment: string,
-    evaluation: number,
-    userName: string,
-  }
-
-  const [reviews, setReviews] = useState<review[]>([]);
   const classes = useStyles();
-
-  useEffect(() => {
-    const getReviews = async() => {
-      const uri = `/api/reviews/${id}`;
-      const { data } = await Axios.get(uri);
-      setReviews(data.reviews);
-    };
-    getReviews();
-  }, [id]);
 
   const reviewsList = reviews.map((review) => {
     return (
@@ -78,21 +70,17 @@ const Comment: React.FC = () => {
   );
 };
 
-export async function getServerSideProps() {
-  // 外部APIからデータを取得します。
-  admin.auth()
-    .getUser('1g9pg28YcHejj31jzJ7hwj6N7Ej1')
-    .then((userRecord) => {
-    // See the UserRecord reference doc for the contents of userRecord.
-      console.log(`Successfully fetched user data: ${userRecord.toJSON()}`);
-      console.log('userRecord', userRecord.providerData[0].displayName);
-    })
-    .catch((error) => {
-      console.log('Error fetching user data:', error);
-    });
-  const data = 'hooho';
+export async function getServerSideProps({ params }) {
+  const res = await Axios.get(`http://ior_api_routes:3000/api/reviews/${params.id}`);
+  const reviews = res.data.reviews;
+  const reviewsWithUserName = await Promise.all(reviews.map(async(review) => {
+    const user = await Axios.get('http://ior_api_routes:3000/api/users');
+    const userName = user.data.user.displayName;
+    review.userName = userName;
+    return review;
+  }));
   // データをprops経由でページに渡します。
-  return { props: { data } };
+  return { props: { reviews: reviewsWithUserName } };
 }
 
 export default Comment;
