@@ -6,6 +6,7 @@ import {
 import { Rating } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 import Axios from 'axios';
+import urljoin from 'url-join';
 
 type review = {
   _id: string,
@@ -71,10 +72,10 @@ const Comment: React.FC<Props> = ({ reviews }) => {
 };
 
 export async function getServerSideProps({ params }) {
-  const res = await Axios.get(`http://ior_api_routes:3000/api/reviews/${params.id}`);
+  const res = await Axios.get(urljoin(process.env.API_ROUTES_BASE_PATH, '/api/reviews/', params.id));
   const reviews = res.data.reviews;
   const reviewsWithUserName = await Promise.all(reviews.map(async(review) => {
-    const user = await Axios.get('http://ior_api_routes:3000/api/users');
+    const user = await Axios.get(urljoin(process.env.API_ROUTES_BASE_PATH, '/api/users'));
     const userName = user.data.user.displayName;
     review.userName = userName;
     return review;
