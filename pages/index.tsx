@@ -56,6 +56,31 @@ const Index: React.FC<Props> = ({ sweetsData }) => {
 
   const classes = useStyles();
 
+  const { currentUser, login } = useContext(AuthContext);
+
+  const postButton = () => {
+    if (currentUser) {
+      return (
+        <Button
+          variant="outlined"
+          className={classes.reviewButton}
+          onClick={() => Router.push('/new-review')}
+        >
+          投稿する
+        </Button>
+      );
+    }
+    return (
+      <Button
+        variant="outlined"
+        className={classes.reviewButton}
+        onClick={() => login()}
+      >
+        投稿をするにはログインをしてください
+      </Button>
+    );
+  };
+
   useEffect(() => {
     const getRanking = async() => {
       const ranking = await Axios.get('/api/sweets/ranking');
@@ -82,14 +107,7 @@ const Index: React.FC<Props> = ({ sweetsData }) => {
           </Grid>
         </div>
       </div>
-
-      <Button
-        variant="outlined"
-        className={classes.reviewButton}
-        onClick={() => Router.push('/new-review')}
-      >
-        投稿する
-      </Button>
+      {postButton()}
     </div>
   );
 };
