@@ -13,7 +13,7 @@ type review = {
   sweetId: string,
   comment: string,
   evaluation: number,
-  userName: string,
+  userId: string,
 }
 
 type Props = {
@@ -75,7 +75,8 @@ export async function getServerSideProps({ params }) {
   const res = await Axios.get(urljoin(process.env.API_ROUTES_BASE_PATH, '/api/reviews/', params.id));
   const reviews = res.data.reviews;
   const reviewsWithUserName = await Promise.all(reviews.map(async(review) => {
-    const user = await Axios.get(urljoin(process.env.API_ROUTES_BASE_PATH, '/api/users'));
+    console.log(review);
+    const user = await Axios.get(urljoin(process.env.API_ROUTES_BASE_PATH, '/api/users', review.userId));
     const userName = user.data.user.displayName;
     review.userName = userName;
     return review;
