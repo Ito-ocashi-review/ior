@@ -13,7 +13,7 @@ type review = {
   sweetId: string,
   comment: string,
   evaluation: number,
-  userId: string,
+  userName: string,
 }
 
 type Props = {
