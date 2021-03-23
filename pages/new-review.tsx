@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import Button from '@material-ui/core/Button';
 import logger from 'react-logger';
@@ -10,7 +10,7 @@ import Axios from 'axios';
 import SweetsDropDown from '../components/forms/SweetsDropDown';
 import ReviewText from '../components/forms/ReviewText';
 import EvaluationForm from '../components/forms/EvaluetionForm';
-
+import { AuthContext } from './_app';
 
 type Props = {
   sweets: {id:number, name:string, createdAt:Date}[]
@@ -24,13 +24,16 @@ const NewReview: React.FC<Props> = () => {
       evaluation: 2.5,
     },
   });
-  const [sweets, setSweets] = useState([]);
+
+  const { currentUser, login } = useContext(AuthContext);
 
   const onSubmit = async(data) => {
     const axiosInstance = Axios.create({
       headers: { 'Content-Type': 'application/json' },
     });
+    data.userId = currentUser.uid;
 
+    console.log(data);
     try {
       await axiosInstance.post('/api/reviews', { data });
       Router.push('/');
@@ -39,6 +42,8 @@ const NewReview: React.FC<Props> = () => {
       logger.error(error);
     }
   };
+
+  const [sweets, setSweets] = useState([]);
 
   useEffect(() => {
     const getSweets = async() => {

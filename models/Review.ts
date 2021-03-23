@@ -10,7 +10,7 @@ const ReviewScheme = new mongoose.Schema({
 
   sweetId: String,
 
-  userName: String,
+  userId: String,
 });
 
 export default mongoose.models.Review || mongoose.model('Review', ReviewScheme);
