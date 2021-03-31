@@ -92,7 +92,6 @@ const Index: React.FC<Props> = ({ sweetsData }) => {
   return (
     <div className={classes.top}>
       <div className={classes.section}>
-        <span className={classes.title}>お菓子ランキングトップ３</span>
         <div className={classes.sweetRanking}>
           <Grid container spacing={3}>
             <SweetRanking sweetsData={sweetRanking} />
@@ -100,7 +99,6 @@ const Index: React.FC<Props> = ({ sweetsData }) => {
         </div>
       </div>
       <div className={classes.section}>
-        <span className={classes.title}>総合ランキング</span>
         <div className={classes.totalRanking}>
           <Grid container spacing={8}>
             <TotalRanking
