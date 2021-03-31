@@ -23,7 +23,7 @@ const useStyle = makeStyles(theme => ({
 
 type Ranking = {
   name: string,
-  amount: number,
+  evaluation: number,
 }
 
 type Props = {
@@ -40,7 +40,7 @@ const ReporterRanking:React.FC<Props> = ({ title, rankingArray, rankingUnit }) =
         <RankingColumn
           ranking={index + 1}
           name={ranking.name}
-          reviewAmount={ranking.amount}
+          reviewAmount={ranking.evaluation}
           rankingUnit={rankingUnit}
         />
       </div>
