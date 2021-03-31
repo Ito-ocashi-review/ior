@@ -33,7 +33,6 @@ const NewReview: React.FC<Props> = () => {
     });
     data.userId = currentUser.uid;
 
-    console.log(data);
     try {
       await axiosInstance.post('/api/reviews', { data });
       Router.push('/');
