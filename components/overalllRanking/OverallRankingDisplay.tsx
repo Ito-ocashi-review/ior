@@ -3,7 +3,7 @@ import { makeStyles, Paper } from '@material-ui/core';
 import RankingColumn from './RankingColumn';
 
 const useStyle = makeStyles(theme => ({
-  reporterRanking: {
+  OverallRankingDisplay: {
     backgroundColor: '#270000',
     color: 'white',
     padding: '20px',
@@ -32,7 +32,7 @@ type Props = {
   rankingUnit: string,
 }
 
-const ReporterRanking:React.FC<Props> = ({ title, rankingArray, rankingUnit }) => {
+const OverallRankingDisplay:React.FC<Props> = ({ title, rankingArray, rankingUnit }) => {
   const classes = useStyle();
   const repoters = rankingArray.map((ranking, index) => {
     return (
@@ -48,7 +48,7 @@ const ReporterRanking:React.FC<Props> = ({ title, rankingArray, rankingUnit }) =
   });
 
   return (
-    <Paper className={classes.reporterRanking}>
+    <Paper className={classes.OverallRankingDisplay}>
       <span className={classes.title}>{title}</span>
       <div className={classes.content}>
         {repoters}
@@ -57,4 +57,4 @@ const ReporterRanking:React.FC<Props> = ({ title, rankingArray, rankingUnit }) =
   );
 };
 
-export default ReporterRanking;
+export default OverallRankingDisplay;
