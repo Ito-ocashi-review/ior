@@ -10,14 +10,6 @@ const repotersArray = [{ name: '城之内まこと', evaluation: 2000 },
                        { name: 'ラカゼット', evaluation: 340 },
                        { name: 'john smith', evaluation: 10 }];
 
-// 仮置き
-const sweetsArray = [{ name: 'じゃがりこ', evaluation: 2000 },
-                     { name: 'ぽてち', evaluation: 1000 },
-                     { name: 'うまい棒', evaluation: 650 },
-                     { name: 'ぼたぼた焼き', evaluation: 500 },
-                     { name: 'カントリーマウム', evaluation: 340 },
-                     { name: 'ねるねるねるね', evaluation: 10 }];
-
 type sweetRankingData = {
   id: string,
   name: string,
