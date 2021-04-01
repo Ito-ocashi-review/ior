@@ -9,7 +9,7 @@ import { GetServerSideProps } from 'next';
 import Axios from 'axios';
 import SweetsDropDown from '../components/forms/SweetsDropDown';
 import ReviewText from '../components/forms/ReviewText';
-import EvaluationForm from '../components/forms/EvaluetionForm';
+import ReviewForm from '../components/forms/ReviewForm';
 import { AuthContext } from './_app';
 
 type Props = {
@@ -73,7 +73,7 @@ const NewReview: React.FC<Props> = () => {
           </h2>
           <SweetsDropDown sweets={sweets} />
           <ReviewText />
-          <EvaluationForm />
+          <ReviewForm />
           <Button
             type="submit"
             variant="contained"

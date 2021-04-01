@@ -5,8 +5,8 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import Router from 'next/router';
 import Axios from 'axios';
-import SweetRanking from '../components/topRanking/SweetRanking';
-import TotalRanking from '../components/totalRanking/TotalRanking';
+import SweetRanking from '../components/topRanking/SweetTopRanking';
+import TotalRanking from '../components/overalllRanking/OverallRanking';
 import { AuthContext } from './_app';
 
 const useStyles = makeStyles(theme => ({

@@ -28,7 +28,7 @@ type Props = {
   sweetRanking: sweetRankingData[]
 }
 
-const TotalRanking:React.FC<Props> = ({ sweetRanking }) => {
+const overallRanking:React.FC<Props> = ({ sweetRanking }) => {
   return (
     <>
       <Grid item xs={6}>
@@ -49,4 +49,4 @@ const TotalRanking:React.FC<Props> = ({ sweetRanking }) => {
   );
 };
 
-export default TotalRanking;
+export default overallRanking;
