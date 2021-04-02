@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const EvaluationForm: React.FC = () => {
+const ReviewForm: React.FC = () => {
   const { control, watch } = useFormContext();
   const evaluation: number = watch('evaluation', 0);
   const classes = useStyles();
@@ -44,4 +44,4 @@ const EvaluationForm: React.FC = () => {
   );
 };
 
-export default EvaluationForm;
+export default ReviewForm;

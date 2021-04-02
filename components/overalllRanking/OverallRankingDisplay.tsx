@@ -3,7 +3,7 @@ import { makeStyles, Paper } from '@material-ui/core';
 import RankingColumn from './RankingColumn';
 
 const useStyle = makeStyles(theme => ({
-  reporterRanking: {
+  OverallRankingDisplay: {
     backgroundColor: '#270000',
     color: 'white',
     padding: '20px',
@@ -23,24 +23,38 @@ const useStyle = makeStyles(theme => ({
 
 type Ranking = {
   name: string,
-  evaluation: number,
+  evaluation?: number,
+  amount?: number,
 }
 
 type Props = {
   title: string,
   rankingArray: Array<Ranking>,
   rankingUnit: string,
+  rankingType: 'reporter'|'sweet'
 }
 
-const ReporterRanking:React.FC<Props> = ({ title, rankingArray, rankingUnit }) => {
+const OverallRankingDisplay:React.FC<Props> = ({
+  title, rankingArray, rankingUnit, rankingType,
+}) => {
   const classes = useStyle();
+
+  let reviewNumericalValuePropaty;
+  switch (rankingType) {
+    case 'sweet':
+      reviewNumericalValuePropaty = 'evaluation';
+      break;
+    case 'reporter':
+      reviewNumericalValuePropaty = 'amount';
+  }
+
   const repoters = rankingArray.map((ranking, index) => {
     return (
       <div className={classes.ranking} key={ranking.name}>
         <RankingColumn
           ranking={index + 1}
           name={ranking.name}
-          reviewAmount={ranking.evaluation}
+          reviewNumericalValue={ranking[reviewNumericalValuePropaty]}
           rankingUnit={rankingUnit}
         />
       </div>
@@ -48,7 +62,7 @@ const ReporterRanking:React.FC<Props> = ({ title, rankingArray, rankingUnit }) =
   });
 
   return (
-    <Paper className={classes.reporterRanking}>
+    <Paper className={classes.OverallRankingDisplay}>
       <span className={classes.title}>{title}</span>
       <div className={classes.content}>
         {repoters}
@@ -57,4 +71,4 @@ const ReporterRanking:React.FC<Props> = ({ title, rankingArray, rankingUnit }) =
   );
 };
 
-export default ReporterRanking;
+export default OverallRankingDisplay;

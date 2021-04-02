@@ -5,8 +5,8 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import Router from 'next/router';
 import Axios from 'axios';
-import SweetRanking from '../components/topRanking/SweetRanking';
-import TotalRanking from '../components/totalRanking/TotalRanking';
+import SweetRanking from '../components/topRanking/SweetTopRanking';
+import TotalRanking from '../components/overalllRanking/OverallRanking';
 import { AuthContext } from './_app';
 
 const useStyles = makeStyles(theme => ({
@@ -92,7 +92,6 @@ const Index: React.FC<Props> = ({ sweetsData }) => {
   return (
     <div className={classes.top}>
       <div className={classes.section}>
-        <span className={classes.title}>お菓子ランキングトップ３</span>
         <div className={classes.sweetRanking}>
           <Grid container spacing={3}>
             <SweetRanking sweetsData={sweetRanking} />
@@ -100,7 +99,6 @@ const Index: React.FC<Props> = ({ sweetsData }) => {
         </div>
       </div>
       <div className={classes.section}>
-        <span className={classes.title}>総合ランキング</span>
         <div className={classes.totalRanking}>
           <Grid container spacing={8}>
             <TotalRanking
