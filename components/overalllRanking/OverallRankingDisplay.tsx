@@ -23,7 +23,8 @@ const useStyle = makeStyles(theme => ({
 
 type Ranking = {
   name: string,
-  evaluation: number,
+  evaluation?: number,
+  amount?: number,
 }
 
 type Props = {
