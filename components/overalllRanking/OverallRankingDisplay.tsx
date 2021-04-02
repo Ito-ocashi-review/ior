@@ -38,6 +38,7 @@ const OverallRankingDisplay:React.FC<Props> = ({
   title, rankingArray, rankingUnit, rankingType,
 }) => {
   const classes = useStyle();
+
   let reviewNumericalValuePropaty;
   switch (rankingType) {
     case 'sweet':
@@ -46,6 +47,7 @@ const OverallRankingDisplay:React.FC<Props> = ({
     case 'reporter':
       reviewNumericalValuePropaty = 'amount';
   }
+
   const repoters = rankingArray.map((ranking, index) => {
     return (
       <div className={classes.ranking} key={ranking.name}>
