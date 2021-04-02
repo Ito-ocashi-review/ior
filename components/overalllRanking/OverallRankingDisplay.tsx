@@ -30,17 +30,28 @@ type Props = {
   title: string,
   rankingArray: Array<Ranking>,
   rankingUnit: string,
+  rankingType: 'reporter'|'sweet'
 }
 
-const OverallRankingDisplay:React.FC<Props> = ({ title, rankingArray, rankingUnit }) => {
+const OverallRankingDisplay:React.FC<Props> = ({
+  title, rankingArray, rankingUnit, rankingType,
+}) => {
   const classes = useStyle();
+  let reviewNumericalValuePropaty;
+  switch (rankingType) {
+    case 'sweet':
+      reviewNumericalValuePropaty = 'evaluation';
+      break;
+    case 'reporter':
+      reviewNumericalValuePropaty = 'amount';
+  }
   const repoters = rankingArray.map((ranking, index) => {
     return (
       <div className={classes.ranking} key={ranking.name}>
         <RankingColumn
           ranking={index + 1}
           name={ranking.name}
-          reviewAmount={ranking.evaluation}
+          reviewNumericalValue={ranking[reviewNumericalValuePropaty]}
           rankingUnit={rankingUnit}
         />
       </div>

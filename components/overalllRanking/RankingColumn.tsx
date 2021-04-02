@@ -4,7 +4,7 @@ import React from 'react';
 type Props ={
   ranking: number,
   name: string,
-  reviewAmount: number,
+  reviewNumericalValue: number,
   rankingUnit: string
 }
 
@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Reporter:React.FC<Props> = ({
-  ranking, name, reviewAmount, rankingUnit,
+  ranking, name, reviewNumericalValue, rankingUnit,
 }) => {
   const classes = useStyles();
 
@@ -34,7 +34,7 @@ const Reporter:React.FC<Props> = ({
         {name}
       </Grid>
       <Grid item xs={6}>
-        <span className={`${classes.ranking} ${classes.item}`}>{reviewAmount}</span> {rankingUnit}
+        <span className={`${classes.ranking} ${classes.item}`}>{reviewNumericalValue}</span> {rankingUnit}
       </Grid>
     </Grid>
   );
