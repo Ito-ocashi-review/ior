@@ -88,7 +88,7 @@ const NewReview: React.FC<Props> = () => {
   );
 };
 
-export const getServerSideProps:GetServerSideProps = async(context) => {
+export const getServerSideProps = async(context) => {
 
   // return {
   //   notFound: true,
