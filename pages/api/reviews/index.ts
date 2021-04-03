@@ -1,7 +1,8 @@
+import { NextApiRequest, NextApiResponse } from 'next';
 import Review from '../../../models/Review';
 import dbConnect from '../../../utils/dbConnect';
 
-export default async function handler(req, res) {
+export default async function handler(req:NextApiRequest, res:NextApiResponse):Promise<void> {
   const { method, body } = req;
 
   await dbConnect();

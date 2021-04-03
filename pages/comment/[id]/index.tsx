@@ -7,6 +7,7 @@ import { Rating } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 import Axios from 'axios';
 import urljoin from 'url-join';
+import { GetServerSideProps } from 'next';
 
 type review = {
   _id: string,
@@ -71,7 +72,7 @@ const Comment: React.FC<Props> = ({ reviews }) => {
   );
 };
 
-export async function getServerSideProps({ params }) {
+export const getServerSideProps:GetServerSideProps = async({ params }) => {
   const res = await Axios.get(urljoin(process.env.API_ROUTES_BASE_PATH, '/api/reviews/', params.id));
   const reviews = res.data.reviews;
   const reviewsWithUserName = await Promise.all(reviews.map(async(review) => {
@@ -82,6 +83,6 @@ export async function getServerSideProps({ params }) {
   }));
   // データをprops経由でページに渡します。
   return { props: { reviews: reviewsWithUserName } };
-}
+};
 
 export default Comment;
