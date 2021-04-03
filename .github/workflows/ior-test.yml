@@ -2,17 +2,15 @@ name: IorTest # work flow name
 on: [push] # tining of ignition work flow
 jobs:
   eslint:
-    name: eslint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: yarn install
-        run: yarn install
-      - name: eslint review
-        uses: reviewdog/action-eslint@v1
+      - uses: actions/checkout@v2
+      - uses: mrdivyansh/eslint-action@1.0.7
+        # GITHUB_TOKEN in forked repositories is read-only
+        # https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-event-pull_request
+        if: ${{ github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository }} 
         with:
-          github_token: ${{ secrets.github_token }}
-          reporter: github-pr-review
-          eslint_flags: './**/*.{vue,ts,js}'
-      - name: eslint
-        run: yarn lint
+          repo-token: ${{secrets.GITHUB_TOKEN}}
+          eslint-rc: .eslintrc.js
+          execute-on-files:
+            - ./packages
