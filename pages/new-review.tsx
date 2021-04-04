@@ -13,8 +13,8 @@ import ReviewForm from '../components/forms/ReviewForm';
 import { AuthContext } from './_app';
 
 type Props = {
-  sweets: {id:number, name:string, createdAt:Date}[]
-}
+  sweets: { id: number; name: string; createdAt: Date }[];
+};
 
 const NewReview: React.FC<Props> = () => {
   const methods = useForm({
@@ -25,9 +25,9 @@ const NewReview: React.FC<Props> = () => {
     },
   });
 
-  const { currentUser, login } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
 
-  const onSubmit = async(data) => {
+  const onSubmit = async (data) => {
     const axiosInstance = Axios.create({
       headers: { 'Content-Type': 'application/json' },
     });
@@ -36,8 +36,7 @@ const NewReview: React.FC<Props> = () => {
     try {
       await axiosInstance.post('/api/reviews', { data });
       Router.push('/');
-    }
-    catch (error) {
+    } catch (error) {
       logger.error(error);
     }
   };
@@ -45,14 +44,14 @@ const NewReview: React.FC<Props> = () => {
   const [sweets, setSweets] = useState([]);
 
   useEffect(() => {
-    const getSweets = async() => {
+    const getSweets = async () => {
       const res = await Axios.get('/api/sweets');
       setSweets(res.data.sweets);
     };
     getSweets();
   }, []);
 
-  const useStyles = makeStyles(theme => ({
+  const useStyles = makeStyles({
     reviewForm: {
       marginTop: '150px',
       backgroundColor: '#270000',
@@ -60,7 +59,7 @@ const NewReview: React.FC<Props> = () => {
       borderRadius: '20px',
       color: 'white',
     },
-  }));
+  });
 
   const classes = useStyles();
 
@@ -68,18 +67,11 @@ const NewReview: React.FC<Props> = () => {
     <Container maxWidth="md" className={classes.reviewForm}>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
-          <h2>
-            新しいレビューを投稿する
-          </h2>
+          <h2>新しいレビューを投稿する</h2>
           <SweetsDropDown sweets={sweets} />
           <ReviewText />
           <ReviewForm />
-          <Button
-            type="submit"
-            variant="contained"
-            color="secondary"
-            fullWidth
-          >
+          <Button type="submit" variant="contained" color="secondary" fullWidth>
             投稿する
           </Button>
         </form>
@@ -88,8 +80,7 @@ const NewReview: React.FC<Props> = () => {
   );
 };
 
-export const getServerSideProps:GetServerSideProps = async(context) => {
-
+export const getServerSideProps: GetServerSideProps = async () => {
   // return {
   //   notFound: true,
   // };

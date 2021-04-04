@@ -4,11 +4,11 @@ import { TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 type FormValues = {
-  TextField: string
-  comment: string
-}
+  TextField: string;
+  comment: string;
+};
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
     margin: '20px 0',
     color: '#FFFFFF',
@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   label: {
     color: '#FFFFFF',
   },
-}));
+});
 
 const ReviewText: React.FC = () => {
   const { control } = useFormContext<FormValues>();

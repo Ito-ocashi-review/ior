@@ -1,14 +1,14 @@
 import { Grid, makeStyles } from '@material-ui/core';
 import React from 'react';
 
-type Props ={
-  ranking: number,
-  name: string,
-  reviewNumericalValue: number,
-  rankingUnit: string
-}
+type Props = {
+  ranking: number;
+  name: string;
+  reviewNumericalValue: number;
+  rankingUnit: string;
+};
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
     fontSize: '30px',
   },
@@ -18,10 +18,13 @@ const useStyles = makeStyles(theme => ({
   item: {
     textAlign: 'left',
   },
-}));
+});
 
-const Reporter:React.FC<Props> = ({
-  ranking, name, reviewNumericalValue, rankingUnit,
+const Reporter: React.FC<Props> = ({
+  ranking,
+  name,
+  reviewNumericalValue,
+  rankingUnit,
 }) => {
   const classes = useStyles();
 
@@ -34,7 +37,10 @@ const Reporter:React.FC<Props> = ({
         {name}
       </Grid>
       <Grid item xs={6}>
-        <span className={`${classes.ranking} ${classes.item}`}>{reviewNumericalValue}</span> {rankingUnit}
+        <span className={`${classes.ranking} ${classes.item}`}>
+          {reviewNumericalValue}
+        </span>{' '}
+        {rankingUnit}
       </Grid>
     </Grid>
   );

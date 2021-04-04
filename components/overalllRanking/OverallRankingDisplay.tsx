@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles, Paper } from '@material-ui/core';
 import RankingColumn from './RankingColumn';
 
-const useStyle = makeStyles(theme => ({
+const useStyle = makeStyles({
   OverallRankingDisplay: {
     backgroundColor: '#270000',
     color: 'white',
@@ -19,23 +19,26 @@ const useStyle = makeStyles(theme => ({
     height: '400px',
     overflow: 'scroll',
   },
-}));
+});
 
 type Ranking = {
-  name: string,
-  evaluation?: number,
-  amount?: number,
-}
+  name: string;
+  evaluation?: number;
+  amount?: number;
+};
 
 type Props = {
-  title: string,
-  rankingArray: Array<Ranking>,
-  rankingUnit: string,
-  rankingType: 'reporter'|'sweet'
-}
+  title: string;
+  rankingArray: Array<Ranking>;
+  rankingUnit: string;
+  rankingType: 'reporter' | 'sweet';
+};
 
-const OverallRankingDisplay:React.FC<Props> = ({
-  title, rankingArray, rankingUnit, rankingType,
+const OverallRankingDisplay: React.FC<Props> = ({
+  title,
+  rankingArray,
+  rankingUnit,
+  rankingType,
 }) => {
   const classes = useStyle();
 
@@ -64,9 +67,7 @@ const OverallRankingDisplay:React.FC<Props> = ({
   return (
     <Paper className={classes.OverallRankingDisplay}>
       <span className={classes.title}>{title}</span>
-      <div className={classes.content}>
-        {repoters}
-      </div>
+      <div className={classes.content}>{repoters}</div>
     </Paper>
   );
 };

@@ -2,7 +2,10 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import Sweet from '../../../models/Sweet';
 import dbConnect from '../../../utils/dbConnect';
 
-export default async function handler(req:NextApiRequest, res:NextApiResponse):Promise<void> {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+): Promise<void> {
   const { method, body } = req;
 
   await dbConnect();
@@ -13,19 +16,17 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse):P
         /* get all sweets */
         const sweets = await Sweet.find({});
         res.status(201).json({ success: true, sweets });
-      }
-      catch (error) {
+      } catch (error) {
         res.status(400).json({ success: false });
       }
       break;
     case 'POST':
       try {
-        const sweet = await Sweet.create(
-          { name: body.name },
-        ); /* create a new model in the database */
+        const sweet = await Sweet.create({
+          name: body.name,
+        }); /* create a new model in the database */
         res.status(201).json({ success: true, data: sweet });
-      }
-      catch (error) {
+      } catch (error) {
         res.status(400).json({ success: false });
       }
       break;

@@ -1,33 +1,37 @@
 module.exports = {
-  parser: '@typescript-eslint/parser',
+  env: {
+    browser: true,
+    node: true,
+    es2021: true,
+  },
   extends: [
-    'weseek',
-    'weseek/typescript-next',
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
   ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 12,
+    sourceType: 'module',
+  },
+  plugins: ['react', '@typescript-eslint'],
   rules: {
-    'import/prefer-default-export': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/no-unused-vars': 'off',
-    // tsで型の管理をしているので、prop-types に関するルールは無効化
     'react/prop-types': 'off',
-    indent: [
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
+    'prettier/prettier': [
       'error',
-      2,
       {
-        SwitchCase: 1,
-        ignoredNodes: ['JSXElement *', 'JSXElement', 'JSXAttribute', 'JSXSpreadAttribute'],
-        ArrayExpression: 'first',
-        FunctionDeclaration: { body: 1, parameters: 2 },
-        FunctionExpression: { body: 1, parameters: 2 },
+        trailingComma: 'es5',
+        tabWidth: 2,
+        semi: true,
+        singleQuote: true,
+        jsxBracketSameLine: false,
       },
     ],
-  },
-  settings: {
-    'import/resolver': {
-      node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
-        moduleDirectory: ['node_modules/'],
-      },
-    },
   },
 };

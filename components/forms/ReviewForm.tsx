@@ -4,7 +4,7 @@ import { Rating } from '@material-ui/lab';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
     margin: '20px 0',
   },
@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   label: {
     color: '#FFFFFF',
   },
-}));
+});
 
 const ReviewForm: React.FC = () => {
   const { control, watch } = useFormContext();
@@ -37,8 +37,7 @@ const ReviewForm: React.FC = () => {
             onChange={onChange}
           />
         )}
-      >
-      </Controller>
+      ></Controller>
       <span>{evaluation}</span>
     </div>
   );

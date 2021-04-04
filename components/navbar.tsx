@@ -1,25 +1,22 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Router from 'next/router';
-import {
-  AppBar, Toolbar,
-} from '@material-ui/core';
+import { AppBar, Toolbar } from '@material-ui/core';
 
 import Button from './atoms/Button';
 import { AuthContext } from '../pages/_app';
 
-const MenuAppBar:React.FC = () => {
-
+const MenuAppBar: React.FC = () => {
   const { login, logout, currentUser } = useContext(AuthContext);
 
-  const useStyles = makeStyles(theme => ({
+  const useStyles = makeStyles({
     navbar: {
       backgroundColor: '#270000',
     },
     span: {
       textTransform: 'none',
     },
-  }));
+  });
 
   const classes = useStyles();
 
@@ -46,9 +43,7 @@ const MenuAppBar:React.FC = () => {
             いとおかし
           </Button>
           {loginOrLogoutButton()}
-          {currentUser && (
-            <span>{currentUser.displayName}さん</span>
-          )}
+          {currentUser && <span>{currentUser.displayName}さん</span>}
         </Toolbar>
       </AppBar>
     </div>
