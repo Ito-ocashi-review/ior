@@ -3,31 +3,38 @@ import Sweet from '../../../models/Sweet';
 import Review from '../../../models/Review';
 import dbConnect from '../../../utils/dbConnect';
 
-export default async function handler(req:NextApiRequest, res:NextApiResponse):Promise<void> {
-
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+): Promise<void> {
   await dbConnect();
 
   try {
     const sweets = await Sweet.find({});
-    const sweetScore = sweets?.map(async(sweet) => {
+    const sweetScore = sweets?.map(async (sweet) => {
       const reviews = await Review.find({ sweetId: sweet._id });
       // レビューが一つもなかったら、平均値を0で返す
       if (reviews?.length === 0) {
         return { id: sweet._id, name: sweet.name, evaluation: 0 };
       }
 
-      const scoreAmount = reviews?.map((review) => {
-        return Number(review.evaluation);
-      }).reduce((accumulator, currentValue) => {
-        return accumulator + currentValue;
-      });
+      const scoreAmount = reviews
+        ?.map((review) => {
+          return Number(review.evaluation);
+        })
+        .reduce((accumulator, currentValue) => {
+          return accumulator + currentValue;
+        });
 
       if (scoreAmount && reviews?.length) {
-        return { id: sweet._id, name: sweet.name, evaluation: Number((scoreAmount / reviews?.length).toFixed(2)) };
+        return {
+          id: sweet._id,
+          name: sweet.name,
+          evaluation: Number((scoreAmount / reviews?.length).toFixed(2)),
+        };
       }
 
       return { id: sweet._id, name: sweet.name, evaluation: 0 };
-
     });
 
     let sweetsRankingData;
@@ -41,9 +48,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse):P
     });
 
     res.status(201).json({ success: true, sortedSweetsRankingData });
-  }
-  catch (error) {
+  } catch (error) {
     res.status(400).json({ success: false });
   }
-
 }

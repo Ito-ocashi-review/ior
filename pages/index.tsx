@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import {
-  Button, Grid,
-} from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Router from 'next/router';
 import Axios from 'axios';
@@ -42,14 +40,14 @@ const useStyles = makeStyles({
 });
 
 type data = {
-  id: string,
-  name: string,
-  evaluation: number,
-}
+  id: string;
+  name: string;
+  evaluation: number;
+};
 
-type Props ={
-  sweetsData: data[]
-}
+type Props = {
+  sweetsData: data[];
+};
 
 const Index: React.FC<Props> = () => {
   const [sweetRanking, setsweetRanking] = useState([]);
@@ -82,7 +80,7 @@ const Index: React.FC<Props> = () => {
   };
 
   useEffect(() => {
-    const getRanking = async() => {
+    const getRanking = async () => {
       const ranking = await Axios.get('/api/sweets/ranking');
       setsweetRanking(ranking.data.sortedSweetsRankingData);
     };
@@ -101,9 +99,7 @@ const Index: React.FC<Props> = () => {
       <div className={classes.section}>
         <div className={classes.totalRanking}>
           <Grid container spacing={8}>
-            <TotalRanking
-              sweetRanking={sweetRanking}
-            />
+            <TotalRanking sweetRanking={sweetRanking} />
           </Grid>
         </div>
       </div>

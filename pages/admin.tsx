@@ -5,15 +5,13 @@ import Button from '@material-ui/core/Button';
 import Axios from 'axios';
 
 type Inputs = {
-  name: string,
+  name: string;
 };
 
 const Admin: React.FC = () => {
-  const {
-    handleSubmit, control,
-  } = useForm<Inputs>();
+  const { handleSubmit, control } = useForm<Inputs>();
 
-  const onSubmit = async(data): Promise<void> => {
+  const onSubmit = async (data): Promise<void> => {
     await Axios({
       method: 'post',
       url: '/api/sweets',
@@ -31,11 +29,7 @@ const Admin: React.FC = () => {
         placeholder="ビックリマンチョコ"
         className="materialUIInput"
       />
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-      >
+      <Button type="submit" variant="contained" color="primary">
         投稿する
       </Button>
     </form>

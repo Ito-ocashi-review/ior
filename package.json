@@ -35,7 +35,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . --ext ts"
+    "lint:js": "eslint \"**/*.{js,jsx,ts,tsx}\" --max-warnings 0",
+    "lint": "npm-run-all -p lint:js"
   },
   "devDependencies": {
     "@material-ui/lab": "^4.0.0-alpha.56",

@@ -3,9 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import TwitterIcon from '@material-ui/icons/Twitter';
 
-import {
-  Button, Grid,
-} from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 
 import { signIn } from 'next-auth/client';
 
@@ -18,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-const OAuthButton:React.FC = () => {
+const OAuthButton: React.FC = () => {
   const classes = useStyles();
 
   const handleGithubLogin = () => {
@@ -35,9 +33,7 @@ const OAuthButton:React.FC = () => {
         <Button
           variant="outlined"
           color="default"
-          startIcon={
-            <GitHubIcon />
-          }
+          startIcon={<GitHubIcon />}
           fullWidth
           onClick={handleGithubLogin}
           className={classes.button}
@@ -49,9 +45,7 @@ const OAuthButton:React.FC = () => {
         <Button
           variant="outlined"
           color="default"
-          startIcon={(
-            <TwitterIcon className={classes.twitter} />
-          )}
+          startIcon={<TwitterIcon className={classes.twitter} />}
           fullWidth
           onClick={handleTwitterLogin}
           className={classes.button}

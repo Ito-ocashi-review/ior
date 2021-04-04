@@ -4,9 +4,9 @@ import { TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 type FormValues = {
-  TextField: string
-  comment: string
-}
+  TextField: string;
+  comment: string;
+};
 
 const useStyles = makeStyles({
   root: {

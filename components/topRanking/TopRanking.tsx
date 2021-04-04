@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  makeStyles,
-} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
   ranking: {
@@ -23,29 +21,23 @@ const useStyles = makeStyles({
 });
 
 type props = {
-  number: number,
-}
+  number: number;
+};
 
-const TopRanking:React.FC<props> = ({ number }) => {
+const TopRanking: React.FC<props> = ({ number }) => {
   const classes = useStyles();
 
   const rankingDisplay = (num) => {
     if (num === 1) {
-      return (
-        <span className={`${classes.ranking} ${classes.one}`}>No.1</span>
-      );
+      return <span className={`${classes.ranking} ${classes.one}`}>No.1</span>;
     }
     if (num === 2) {
-      return (
-        <span className={`${classes.ranking} ${classes.two}`}>No.2</span>
-      );
+      return <span className={`${classes.ranking} ${classes.two}`}>No.2</span>;
     }
     return <span className={`${classes.ranking} ${classes.three}`}>No.3</span>;
   };
 
-  return (
-    rankingDisplay(number)
-  );
+  return rankingDisplay(number);
 };
 
 export default TopRanking;

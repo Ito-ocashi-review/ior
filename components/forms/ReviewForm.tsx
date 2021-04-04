@@ -37,8 +37,7 @@ const ReviewForm: React.FC = () => {
             onChange={onChange}
           />
         )}
-      >
-      </Controller>
+      ></Controller>
       <span>{evaluation}</span>
     </div>
   );

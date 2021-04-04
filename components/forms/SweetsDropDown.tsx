@@ -1,16 +1,14 @@
 import React from 'react';
-import {
-  Select, InputLabel, MenuItem, FormControl,
-} from '@material-ui/core';
+import { Select, InputLabel, MenuItem, FormControl } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useFormContext, Controller } from 'react-hook-form';
 
 type Props = {
-  sweets: {_id:string, name:string, createdAt:Date}[]
-}
+  sweets: { _id: string; name: string; createdAt: Date }[];
+};
 
 const SweetsDropDown: React.FC<Props> = React.memo(({ sweets }) => {
-  const { control, watch } = useFormContext();
+  const { control } = useFormContext();
 
   const useStyles = makeStyles({
     root: {
@@ -39,9 +37,15 @@ const SweetsDropDown: React.FC<Props> = React.memo(({ sweets }) => {
         name="sweetId"
         render={({ onChange }) => (
           <FormControl fullWidth className={classes.root}>
-            <InputLabel htmlFor="grouped-select" className={classes.label}>お菓子を選択</InputLabel>
-            <Select defaultValue="ffsafa" id="grouped-select" className={classes.select}>
-              { sweets.map((sweet) => {
+            <InputLabel htmlFor="grouped-select" className={classes.label}>
+              お菓子を選択
+            </InputLabel>
+            <Select
+              defaultValue="ffsafa"
+              id="grouped-select"
+              className={classes.select}
+            >
+              {sweets.map((sweet) => {
                 return (
                   <MenuItem
                     key={sweet._id}
@@ -50,16 +54,12 @@ const SweetsDropDown: React.FC<Props> = React.memo(({ sweets }) => {
                   >
                     {sweet.name}
                   </MenuItem>
-                  );
-                })
-              }
+                );
+              })}
             </Select>
           </FormControl>
         )}
-      >
-      </Controller>
-
-
+      ></Controller>
     </>
   );
 });

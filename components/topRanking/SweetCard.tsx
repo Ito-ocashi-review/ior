@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Button, Card, CardContent, CardHeader,
-} from '@material-ui/core';
+import { Button, Card, CardContent, CardHeader } from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 import Image from 'next/image';
@@ -29,9 +27,9 @@ const useStyles = makeStyles({
   },
 });
 
-type props = {id: string, evaluation:number, name:string}
+type props = { id: string; evaluation: number; name: string };
 
-const SweetCard:React.FC<props> = ({ id, evaluation, name }) => {
+const SweetCard: React.FC<props> = ({ id, evaluation, name }) => {
   const classes = useStyles();
 
   return (
@@ -41,11 +39,7 @@ const SweetCard:React.FC<props> = ({ id, evaluation, name }) => {
         className={`${classes.cardContent} $s{classes.cardHeader}`}
       />
       <CardContent className={`${classes.cardContent} ${classes.cardRating}`}>
-        <Rating
-          precision={0.1}
-          readOnly
-          value={Number(evaluation)}
-        />
+        <Rating precision={0.1} readOnly value={Number(evaluation)} />
       </CardContent>
       <Image
         src="/image/comingsoon.png"
@@ -55,9 +49,7 @@ const SweetCard:React.FC<props> = ({ id, evaluation, name }) => {
       />
       <CardContent className={`${classes.cardContent} ${classes.cardRating}`}>
         <Link href={`/comment/${id}`}>
-          <Button className={classes.cardButton}>
-            + もっと見る
-          </Button>
+          <Button className={classes.cardButton}>+ もっと見る</Button>
         </Link>
       </CardContent>
     </Card>
