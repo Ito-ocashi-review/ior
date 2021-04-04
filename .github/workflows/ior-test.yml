@@ -1,0 +1,12 @@
+name: IorTest # work flow name
+on: [push] # tining of ignition work flow
+jobs:
+  eslint:
+    name: eslint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: yarn install
+        run: yarn install
+      - name: eslint
+        run: yarn lint
