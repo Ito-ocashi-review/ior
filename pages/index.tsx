@@ -9,7 +9,7 @@ import SweetRanking from '../components/topRanking/SweetTopRanking';
 import TotalRanking from '../components/overalllRanking/OverallRanking';
 import { AuthContext } from './_app';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   top: {
     color: '#270000',
     height: '100vh',
@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
   totalRanking: {
     margin: '30px 0',
   },
-}));
+});
 
 type data = {
   id: string,

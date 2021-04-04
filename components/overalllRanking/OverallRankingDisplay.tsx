@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles, Paper } from '@material-ui/core';
 import RankingColumn from './RankingColumn';
 
-const useStyle = makeStyles(theme => ({
+const useStyle = makeStyles({
   OverallRankingDisplay: {
     backgroundColor: '#270000',
     color: 'white',
@@ -19,7 +19,7 @@ const useStyle = makeStyles(theme => ({
     height: '400px',
     overflow: 'scroll',
   },
-}));
+});
 
 type Ranking = {
   name: string,

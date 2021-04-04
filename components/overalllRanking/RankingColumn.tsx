@@ -8,7 +8,7 @@ type Props ={
   rankingUnit: string
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
     fontSize: '30px',
   },
@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   item: {
     textAlign: 'left',
   },
-}));
+});
 
 const Reporter:React.FC<Props> = ({
   ranking, name, reviewNumericalValue, rankingUnit,

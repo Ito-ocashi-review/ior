@@ -9,14 +9,14 @@ import {
 
 import { signIn } from 'next-auth/client';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   twitter: {
     color: '#00aced',
   },
   button: {
     textTransform: 'none',
   },
-}));
+});
 
 const OAuthButton:React.FC = () => {
   const classes = useStyles();

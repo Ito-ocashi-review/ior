@@ -25,7 +25,7 @@ const Comment: React.FC<Props> = ({ reviews }) => {
   const router = useRouter();
   const { id } = router.query;
 
-  const useStyles = makeStyles(theme => ({
+  const useStyles = makeStyles({
     root: {
       flexGrow: 1,
     },
@@ -35,7 +35,7 @@ const Comment: React.FC<Props> = ({ reviews }) => {
     cardContainer: {
       margin: '150px 0',
     },
-  }));
+  });
 
   const classes = useStyles();
 

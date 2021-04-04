@@ -52,7 +52,7 @@ const NewReview: React.FC<Props> = () => {
     getSweets();
   }, []);
 
-  const useStyles = makeStyles(theme => ({
+  const useStyles = makeStyles({
     reviewForm: {
       marginTop: '150px',
       backgroundColor: '#270000',
@@ -60,7 +60,7 @@ const NewReview: React.FC<Props> = () => {
       borderRadius: '20px',
       color: 'white',
     },
-  }));
+  });
 
   const classes = useStyles();
 

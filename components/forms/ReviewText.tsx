@@ -8,7 +8,7 @@ type FormValues = {
   comment: string
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
     margin: '20px 0',
     color: '#FFFFFF',
@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   label: {
     color: '#FFFFFF',
   },
-}));
+});
 
 const ReviewText: React.FC = () => {
   const { control } = useFormContext<FormValues>();

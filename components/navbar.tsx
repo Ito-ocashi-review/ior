@@ -12,14 +12,14 @@ const MenuAppBar:React.FC = () => {
 
   const { login, logout, currentUser } = useContext(AuthContext);
 
-  const useStyles = makeStyles(theme => ({
+  const useStyles = makeStyles({
     navbar: {
       backgroundColor: '#270000',
     },
     span: {
       textTransform: 'none',
     },
-  }));
+  });
 
   const classes = useStyles();
 

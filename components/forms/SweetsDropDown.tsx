@@ -13,7 +13,7 @@ const SweetsDropDown: React.FC<Props> = React.memo(({ sweets }) => {
   const { control, watch } = useFormContext();
   const sweetId = watch('sweetId', '');
 
-  const useStyles = makeStyles(theme => ({
+  const useStyles = makeStyles({
     root: {
       margin: '20px 0',
     },
@@ -29,7 +29,7 @@ const SweetsDropDown: React.FC<Props> = React.memo(({ sweets }) => {
         borderColor: '#FFFFFF',
       },
     },
-  }));
+  });
 
   const classes = useStyles();
 
