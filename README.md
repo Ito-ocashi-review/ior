@@ -28,7 +28,7 @@ FIREBASE_PRIVATE_KEY=
 API_ROUTES_BASE_PATH='http://ior_api_routes:3000'
 ```
 
-## boot
+## 
 ```
 docker-compose up
 ```
