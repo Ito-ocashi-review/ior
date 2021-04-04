@@ -3,6 +3,36 @@
   Ito-ocashi-review
 </h2>
 
+# Getting Started
+## Install
+```
+yarn install
+```
+## Add environment file
+プロジェクトルートに、.env.localを追記
+```
+MONGO_URI='mongodb://mongo:27017'
+// 以下８行は firebase sdk 連携用の環境変数
+NEXT_PUBLIC_FIRE_BASE_API_KEY=
+NEXT_PUBLIC_FIRE_BASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIRE_BASE_DATABASE_URL=
+NEXT_PUBLIC_FIRE_BASE_PROJECT_ID=
+NEXT_PUBLIC_FIRE_BASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIRE_BASE_MESSSAGING_SENDER_ID=
+NEXT_PUBLIC_FIRE_BASE_APP_ID=
+NEXT_PUBLIC_FIRE_BASE_MESUREMENT_ID=
+// 以下３行は firebase admin sdk 連携用の環境変数
+FIREBASE_PROJECT_ID=
+FIREBASE_CLIENT_EMAIL=
+FIREBASE_PRIVATE_KEY=
+API_ROUTES_BASE_PATH='http://ior_api_routes:3000'
+```
+
+## boot
+```
+docker-compose up
+```
+
 <p align="center">
   <br>
   <b><a>- Contributors -</a></b><br>
