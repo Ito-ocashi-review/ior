@@ -8,11 +8,11 @@ jobs:
       - uses: actions/checkout@v1
       - name: yarn install
         run: yarn install
-      - name: eslint review
-        uses: reviewdog/action-eslint@v1
-        with:
-          github_token: ${{ secrets.github_token }}
-          reporter: github-pr-review
-          eslint_flags: './**/*.{ts,js}'
+      # - name: eslint review
+      #   uses: reviewdog/action-eslint@v1
+      #   with:
+      #     github_token: ${{ secrets.github_token }}
+      #     reporter: github-pr-review
+      #     eslint_flags: './**/*.{ts,js}'
       - name: eslint
         run: yarn lint
