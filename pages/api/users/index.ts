@@ -2,8 +2,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { admin } from '../../../firebase-admin';
 
 export default async function handler(req:NextApiRequest, res:NextApiResponse):Promise<void> {
-  const { method, body } = req;
-  const user = { userName: 'hoge' };
   try {
     /* get user by uid */
     const user = await admin.auth()

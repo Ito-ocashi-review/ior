@@ -11,7 +11,6 @@ type Props = {
 
 const SweetsDropDown: React.FC<Props> = React.memo(({ sweets }) => {
   const { control, watch } = useFormContext();
-  const sweetId = watch('sweetId', '');
 
   const useStyles = makeStyles({
     root: {

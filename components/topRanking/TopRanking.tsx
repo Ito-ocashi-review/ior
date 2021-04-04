@@ -3,7 +3,7 @@ import {
   makeStyles,
 } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   ranking: {
     fontFamily: 'Luckiest Guy',
     fontSize: '80px',
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   three: {
     color: '#C47222',
   },
-}));
+});
 
 type props = {
   number: number,

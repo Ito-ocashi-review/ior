@@ -51,7 +51,7 @@ type Props ={
   sweetsData: data[]
 }
 
-const Index: React.FC<Props> = ({ sweetsData }) => {
+const Index: React.FC<Props> = () => {
   const [sweetRanking, setsweetRanking] = useState([]);
 
   const classes = useStyles();

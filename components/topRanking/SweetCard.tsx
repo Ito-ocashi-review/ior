@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   cards: {
     margin: '30px 0',
   },
@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     border: '1px solid #FFAA01',
     borderRadius: '18px',
   },
-}));
+});
 
 type props = {id: string, evaluation:number, name:string}
 

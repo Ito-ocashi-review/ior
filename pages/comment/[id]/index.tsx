@@ -1,5 +1,4 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import {
   Card, CardContent, CardHeader, Grid, Typography,
 } from '@material-ui/core';
@@ -22,8 +21,6 @@ type Props = {
 }
 
 const Comment: React.FC<Props> = ({ reviews }) => {
-  const router = useRouter();
-  const { id } = router.query;
 
   const useStyles = makeStyles({
     root: {

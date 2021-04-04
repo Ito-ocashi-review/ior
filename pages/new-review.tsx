@@ -25,7 +25,7 @@ const NewReview: React.FC<Props> = () => {
     },
   });
 
-  const { currentUser, login } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
 
   const onSubmit = async(data) => {
     const axiosInstance = Axios.create({
@@ -88,7 +88,7 @@ const NewReview: React.FC<Props> = () => {
   );
 };
 
-export const getServerSideProps:GetServerSideProps = async(context) => {
+export const getServerSideProps:GetServerSideProps = async() => {
 
   // return {
   //   notFound: true,
