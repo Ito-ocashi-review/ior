@@ -50,6 +50,30 @@ const OverallRankingDisplay: React.FC<Props> = ({
 }) => {
   const classes = useStyle();
 
+  if (rankingType === 'sweet') {
+    const sweets = rankingArray.map((ranking, index) => {
+      return (
+        <Link href={`/comment/${ranking.id}`} key={ranking.name}>
+          <div className={classes.ranking}>
+            <RankingColumn
+              ranking={index + 1}
+              name={ranking.name}
+              reviewNumericalValue={ranking.evaluation}
+              rankingUnit={rankingUnit}
+            />
+          </div>
+        </Link>
+      );
+    });
+
+    return (
+      <Paper className={classes.OverallRankingDisplay}>
+        <span className={classes.title}>{title}</span>
+        <div className={classes.content}>{sweets}</div>
+      </Paper>
+    );
+  }
+
   const repoters = rankingArray.map((ranking, index) => {
     return (
       <div className={classes.ranking} key={ranking.name}>
@@ -62,30 +86,6 @@ const OverallRankingDisplay: React.FC<Props> = ({
       </div>
     );
   });
-
-  const sweets = rankingArray.map((ranking, index) => {
-    return (
-      <Link href={`/comment/${ranking.id}`} key={ranking.name}>
-        <div className={classes.ranking}>
-          <RankingColumn
-            ranking={index + 1}
-            name={ranking.name}
-            reviewNumericalValue={ranking.evaluation}
-            rankingUnit={rankingUnit}
-          />
-        </div>
-      </Link>
-    );
-  });
-
-  if (rankingType === 'sweet') {
-    return (
-      <Paper className={classes.OverallRankingDisplay}>
-        <span className={classes.title}>{title}</span>
-        <div className={classes.content}>{sweets}</div>
-      </Paper>
-    );
-  }
 
   return (
     <Paper className={classes.OverallRankingDisplay}>
