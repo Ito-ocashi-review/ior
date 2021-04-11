@@ -12,14 +12,14 @@ const repotersArray = [
   { name: 'john smith', amount: 10 },
 ];
 
-type sweetRankingData = {
+type sweetData = {
   id: string;
   name: string;
   evaluation: number;
 };
 
 type Props = {
-  sweetRanking: sweetRankingData[];
+  sweetRanking: sweetData[];
 };
 
 const overallRanking: React.FC<Props> = ({ sweetRanking }) => {

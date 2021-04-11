@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles, Paper } from '@material-ui/core';
 import RankingColumn from './RankingColumn';
+import Link from 'next/link';
 
 const useStyle = makeStyles({
   OverallRankingDisplay: {
@@ -13,7 +14,13 @@ const useStyle = makeStyles({
     fontSize: '40px',
   },
   ranking: {
-    margin: '50px 0',
+    margin: '10px 0',
+    padding: '10px 0',
+    '&:hover': {
+      backgroundColor: '#984B15',
+      transition: 'all 0.2s linear',
+      cursor: 'pointer',
+    },
   },
   content: {
     height: '400px',
@@ -22,6 +29,7 @@ const useStyle = makeStyles({
 });
 
 type Ranking = {
+  id?: string;
   name: string;
   evaluation?: number;
   amount?: number;
@@ -42,13 +50,28 @@ const OverallRankingDisplay: React.FC<Props> = ({
 }) => {
   const classes = useStyle();
 
-  let reviewNumericalValuePropaty;
-  switch (rankingType) {
-    case 'sweet':
-      reviewNumericalValuePropaty = 'evaluation';
-      break;
-    case 'reporter':
-      reviewNumericalValuePropaty = 'amount';
+  if (rankingType === 'sweet') {
+    const sweets = rankingArray.map((ranking, index) => {
+      return (
+        <Link href={`/comment/${ranking.id}`} key={ranking.name}>
+          <div className={classes.ranking}>
+            <RankingColumn
+              ranking={index + 1}
+              name={ranking.name}
+              reviewNumericalValue={ranking.evaluation}
+              rankingUnit={rankingUnit}
+            />
+          </div>
+        </Link>
+      );
+    });
+
+    return (
+      <Paper className={classes.OverallRankingDisplay}>
+        <span className={classes.title}>{title}</span>
+        <div className={classes.content}>{sweets}</div>
+      </Paper>
+    );
   }
 
   const repoters = rankingArray.map((ranking, index) => {
@@ -57,7 +80,7 @@ const OverallRankingDisplay: React.FC<Props> = ({
         <RankingColumn
           ranking={index + 1}
           name={ranking.name}
-          reviewNumericalValue={ranking[reviewNumericalValuePropaty]}
+          reviewNumericalValue={ranking.amount}
           rankingUnit={rankingUnit}
         />
       </div>
