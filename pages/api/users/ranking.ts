@@ -11,8 +11,12 @@ export default async function handler(
   await dbConnect();
 
   try {
-    const users = await admin.auth().listUsers(1000);
-    console.log(users);
+    const usersObject = await admin.auth().listUsers(1000);
+    const users = usersObject.users;
+    const usersRanking = users?.map(async (user) => {
+      const reviews = await Review.find({ userId: user.uid });
+      console.log(reviews);
+    });
   } catch (error) {
     res.status(400).json({ success: false });
   }
