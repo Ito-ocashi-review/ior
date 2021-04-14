@@ -78,7 +78,6 @@ const Index: React.FC<Props> = () => {
       </Button>
     );
   };
-
   useEffect(() => {
     const getRanking = async () => {
       const ranking = await Axios.get('/api/sweets/ranking');
