@@ -47,7 +47,7 @@ type data = {
   evaluation: number,
 }
 
-type Props ={
+type Props = {
   sweetsData: data[]
 }
 
@@ -80,9 +80,8 @@ const Index: React.FC<Props> = ({ sweetsData }) => {
       </Button>
     );
   };
-
   useEffect(() => {
-    const getRanking = async() => {
+    const getRanking = async () => {
       const ranking = await Axios.get('/api/sweets/ranking');
       setsweetRanking(ranking.data.sortedSweetsRankingData);
     };
