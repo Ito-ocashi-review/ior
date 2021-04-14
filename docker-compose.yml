@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 services:
   mongo:
     image: mongo
@@ -7,11 +7,11 @@ services:
     ports:
       - 27017:27017
 
-  backend:
+  frontend_and_backend:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: ior_api_routes
+    container_name: frontend_and_backend
     command: sh -c "yarn install && yarn dev"
     ports:
       - 3000:3000
