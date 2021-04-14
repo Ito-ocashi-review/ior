@@ -101,7 +101,6 @@ const Index: React.FC<Props> = () => {
       {postButton()}
     </div>
   );
-  <p>fjdskfsdk</p>;
 };
 
 export default Index;
