@@ -9,7 +9,6 @@ type Inputs = {
 };
 const Admin: React.FC = () => {
   const { handleSubmit, control } = useForm<Inputs>();
-
   const onSubmit = async (data): Promise<void> => {
     await Axios({
       method: 'post',
