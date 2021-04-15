@@ -7,7 +7,6 @@ import Axios from 'axios';
 type Inputs = {
   name: string;
 };
-
 const Admin: React.FC = () => {
   const { handleSubmit, control } = useForm<Inputs>();
 
