@@ -51,6 +51,7 @@ type Props = {
 
 const Index: React.FC<Props> = () => {
   const [sweetRanking, setsweetRanking] = useState([]);
+  const [userRanking, setUserRanking] = useState([]);
   const classes = useStyles();
   const { currentUser, login } = useContext(AuthContext);
   const postButton = () => {
@@ -78,6 +79,8 @@ const Index: React.FC<Props> = () => {
   useEffect(() => {
     const getRanking = async () => {
       const sweetRanking = await Axios.get('/api/sweets/ranking');
+      const userRanking = await Axios.get('/api/users/ranking');
+      setUserRanking(userRanking.data.reviewTotal);
       setsweetRanking(sweetRanking.data.sortedSweetsRankingData);
     };
     getRanking();
@@ -94,7 +97,7 @@ const Index: React.FC<Props> = () => {
       <div className={classes.section}>
         <div className={classes.totalRanking}>
           <Grid container spacing={8}>
-            <OverallRanking sweetRanking={sweetRanking} />
+            <OverallRanking sweetRanking={sweetRanking} userRanking={userRanking} />
           </Grid>
         </div>
       </div>
