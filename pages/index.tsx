@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Router from 'next/router';
 import Axios from 'axios';
 import SweetRanking from '../components/topRanking/SweetTopRanking';
-import TotalRanking from '../components/overalllRanking/OverallRanking';
+import OverallRanking from '../components/overalllRanking/OverallRanking';
 import { AuthContext } from './_app';
 
 const useStyles = makeStyles({
@@ -94,7 +94,7 @@ const Index: React.FC<Props> = () => {
       <div className={classes.section}>
         <div className={classes.totalRanking}>
           <Grid container spacing={8}>
-            <TotalRanking sweetRanking={sweetRanking} />
+            <OverallRanking sweetRanking={sweetRanking} />
           </Grid>
         </div>
       </div>
