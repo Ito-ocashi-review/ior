@@ -97,7 +97,10 @@ const Index: React.FC<Props> = () => {
       <div className={classes.section}>
         <div className={classes.totalRanking}>
           <Grid container spacing={8}>
-            <OverallRanking sweetRanking={sweetRanking} userRanking={userRanking} />
+            <OverallRanking
+              sweetRanking={sweetRanking}
+              userRanking={userRanking}
+            />
           </Grid>
         </div>
       </div>

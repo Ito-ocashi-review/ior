@@ -11,7 +11,7 @@ type sweetData = {
 type userData = {
   userName: string;
   totalReviews: number;
-}
+};
 
 type Props = {
   sweetRanking: sweetData[];
