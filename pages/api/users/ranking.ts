@@ -14,7 +14,7 @@ export default async function handler(
     const users = fetchedAllUsers.users;
     const usersWithTotalReviewsWrapedPromise = users?.map(async (user) => {
       const reviews = await Review.find({ userId: user.uid });
-      return { userId: user.uid, totalReviews: reviews.length };
+      return { userId: user.displayName, totalReviews: reviews.length };
     });
 
     let usersTotalReviews;
