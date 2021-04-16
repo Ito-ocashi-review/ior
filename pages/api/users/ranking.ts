@@ -26,7 +26,7 @@ export default async function handler(
       return Number(b.totalReviews) - Number(a.evaluation);
     });
 
-    res.status(201).json({ success: true, reviewTotal: sortedusersTotalReviews });
+    res.status(201).json({ success: true, sortedusersTotalReviews });
   } catch (error) {
     res.status(400).json({ success: false });
   }
