@@ -30,9 +30,10 @@ const useStyle = makeStyles({
 
 type Ranking = {
   id?: string;
-  name: string;
+  name?: string;
+  userName?: string;
   evaluation?: number;
-  amount?: number;
+  totalReviews?: number;
 };
 
 type Props = {
@@ -79,8 +80,8 @@ const OverallRankingDisplay: React.FC<Props> = ({
       <div className={classes.ranking} key={ranking.name}>
         <RankingColumn
           ranking={index + 1}
-          name={ranking.name}
-          reviewNumericalValue={ranking.amount}
+          name={ranking.userName}
+          reviewNumericalValue={ranking.totalReviews}
           rankingUnit={rankingUnit}
         />
       </div>

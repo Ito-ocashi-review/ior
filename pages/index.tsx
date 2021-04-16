@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Router from 'next/router';
 import Axios from 'axios';
 import SweetRanking from '../components/topRanking/SweetTopRanking';
-import TotalRanking from '../components/overalllRanking/OverallRanking';
+import OverallRanking from '../components/overalllRanking/OverallRanking';
 import { AuthContext } from './_app';
 
 const useStyles = makeStyles({
@@ -51,6 +51,7 @@ type Props = {
 
 const Index: React.FC<Props> = () => {
   const [sweetRanking, setsweetRanking] = useState([]);
+  const [userRanking, setUserRanking] = useState([]);
   const classes = useStyles();
   const { currentUser, login } = useContext(AuthContext);
   const postButton = () => {
@@ -77,8 +78,10 @@ const Index: React.FC<Props> = () => {
   };
   useEffect(() => {
     const getRanking = async () => {
-      const ranking = await Axios.get('/api/sweets/ranking');
-      setsweetRanking(ranking.data.sortedSweetsRankingData);
+      const sweetRanking = await Axios.get('/api/sweets/ranking');
+      const userRanking = await Axios.get('/api/users/ranking');
+      setUserRanking(userRanking.data.sortedusersTotalReviews);
+      setsweetRanking(sweetRanking.data.sortedSweetsRankingData);
     };
     getRanking();
   }, []);
@@ -94,7 +97,10 @@ const Index: React.FC<Props> = () => {
       <div className={classes.section}>
         <div className={classes.totalRanking}>
           <Grid container spacing={8}>
-            <TotalRanking sweetRanking={sweetRanking} />
+            <OverallRanking
+              sweetRanking={sweetRanking}
+              userRanking={userRanking}
+            />
           </Grid>
         </div>
       </div>
