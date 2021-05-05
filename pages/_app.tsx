@@ -16,6 +16,7 @@ const MyApp = (props: AppProps): ReactElement => {
 
   const login = async () => {
     firebase.auth().signInWithPopup(provider);
+    
     // .then((result) => {
     //   // const credential = result.credential as firebase.auth.OAuthCredential;
     //   // // This gives you a Google Access Token. You can use it to access the Google API.
