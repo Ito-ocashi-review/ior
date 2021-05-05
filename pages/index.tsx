@@ -54,6 +54,7 @@ const Index: React.FC<Props> = () => {
   const [userRanking, setUserRanking] = useState([]);
   const classes = useStyles();
   const { currentUser, login } = useContext(AuthContext);
+  
   const postButton = () => {
     if (currentUser) {
       return (
