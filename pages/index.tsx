@@ -51,7 +51,6 @@ type Props = {
 };
 
 const Index: React.FC<Props> = () => {
-  const [sweetRanking, setsweetRanking] = useState([]);
   const [userRanking, setUserRanking] = useState([]);
   const classes = useStyles();
   const { currentUser, login } = useContext(AuthContext);
