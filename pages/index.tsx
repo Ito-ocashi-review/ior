@@ -6,6 +6,7 @@ import Axios from 'axios';
 import SweetRanking from '../components/topRanking/SweetTopRanking';
 import OverallRanking from '../components/overalllRanking/OverallRanking';
 import { AuthContext } from './_app';
+import useSWR from 'swr';
 
 const useStyles = makeStyles({
   top: {
@@ -50,7 +51,6 @@ type Props = {
 };
 
 const Index: React.FC<Props> = () => {
-  const [sweetRanking, setsweetRanking] = useState([]);
   const [userRanking, setUserRanking] = useState([]);
   const classes = useStyles();
   const { currentUser, login } = useContext(AuthContext);
@@ -78,30 +78,39 @@ const Index: React.FC<Props> = () => {
   };
   useEffect(() => {
     const getRanking = async () => {
-      const sweetRanking = await Axios.get('/api/sweets/ranking');
       const userRanking = await Axios.get('/api/users/ranking');
       setUserRanking(userRanking.data.sortedusersTotalReviews);
-      setsweetRanking(sweetRanking.data.sortedSweetsRankingData);
     };
     getRanking();
   }, []);
+
+  const { data, error } = useSWR('/api/sweets/ranking');
+
   return (
     <div className={classes.top}>
       <div className={classes.section}>
         <div className={classes.sweetRanking}>
-          <Grid container spacing={3}>
-            <SweetRanking sweetsData={sweetRanking} />
-          </Grid>
+          {!data && <div>...loading</div>}
+          {error && <div>failed to load</div>}
+          {data && (
+            <Grid container spacing={3}>
+              <SweetRanking sweetsData={data.sortedSweetsRankingData} />
+            </Grid>
+          )}
         </div>
       </div>
       <div className={classes.section}>
         <div className={classes.totalRanking}>
-          <Grid container spacing={8}>
-            <OverallRanking
-              sweetRanking={sweetRanking}
-              userRanking={userRanking}
-            />
-          </Grid>
+          {!data && <div>...loading</div>}
+          {error && <div>failed to load</div>}
+          {data && (
+            <Grid container spacing={8}>
+              <OverallRanking
+                sweetRanking={data.sortedSweetsRankingData}
+                userRanking={userRanking}
+              />
+            </Grid>
+          )}
         </div>
       </div>
       {postButton()}
